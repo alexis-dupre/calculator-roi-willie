@@ -6,27 +6,49 @@
     <title>Calculateur ROI Willie - Économies d'eau garanties</title>
     
     <style>
-        /* Variables CSS */
+        /* Variables CSS - Charte graphique Willie */
         :root {
-            --bg-primary: #0A0E1A;
-            --bg-secondary: #141B2D;
-            --accent: #00D4FF;
-            --success: #00FF88;
-            --error: #FF4444;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B8BCC8;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --transition: all 0.2s ease;
+            /* Couleurs principales Willie */
+            --willie-black: #121212;
+            --willie-dark-bg: #1a1a1a;
+            --willie-card-bg: #212121;
+            --willie-blue-primary: #ededed;
+            --willie-blue-hover: #b5b5b5;
+            --willie-green: #ededed;
+            --willie-red: #b5b5b5;
+            --willie-yellow: #b5b5b5;
+            --willie-white: #ededed;
+            --willie-gray-100: #ededed;
+            --willie-gray-200: #b5b5b5;
+            --willie-gray-300: #7a7a7a;
+            --willie-gray-400: #6e6e6e;
+            --willie-gray-500: #616161;
+            --willie-gray-600: #474747;
+            --willie-border: rgba(255, 255, 255, 0.07);
+            --willie-border-hover: rgba(255, 255, 255, 0.17);
+            
+            /* Gradients */
+            --willie-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.23) 0%, rgba(255, 255, 255, 0.13) 100%);
+            --willie-gradient-green: linear-gradient(135deg, rgba(255, 255, 255, 0.33) 0%, rgba(255, 255, 255, 0.23) 100%);
+            
+            /* Ombres */
+            --willie-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --willie-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --willie-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --willie-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.3);
+            
+            /* Transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             
             /* Responsive font sizes */
-            --fs-xs: clamp(0.75rem, 2vw, 0.85rem);
-            --fs-sm: clamp(0.875rem, 2.5vw, 0.95rem);
-            --fs-base: clamp(0.9375rem, 3vw, 1rem);
-            --fs-lg: clamp(1.0625rem, 3.5vw, 1.125rem);
+            --fs-xs: clamp(0.75rem, 2vw, 0.875rem);
+            --fs-sm: clamp(0.875rem, 2.5vw, 1rem);
+            --fs-base: clamp(1rem, 3vw, 1.125rem);
+            --fs-lg: clamp(1.125rem, 3.5vw, 1.25rem);
             --fs-xl: clamp(1.25rem, 4vw, 1.5rem);
-            --fs-2xl: clamp(1.5rem, 5vw, 1.875rem);
-            --fs-3xl: clamp(1.875rem, 6vw, 2.5rem);
-            --fs-4xl: clamp(2.25rem, 7vw, 3rem);
+            --fs-2xl: clamp(1.5rem, 5vw, 2rem);
+            --fs-3xl: clamp(2rem, 6vw, 3rem);
+            --fs-4xl: clamp(2.5rem, 7vw, 4rem);
             
             /* Responsive spacing */
             --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
@@ -35,6 +57,7 @@
             --spacing-lg: clamp(1rem, 4vw, 1.5rem);
             --spacing-xl: clamp(1.5rem, 5vw, 2rem);
             --spacing-2xl: clamp(2rem, 6vw, 3rem);
+            --spacing-3xl: clamp(3rem, 8vw, 4rem);
         }
 
         /* Reset et base */
@@ -45,9 +68,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+            background: var(--willie-black);
+            color: var(--willie-white);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -56,103 +79,173 @@
             padding: var(--spacing-md);
             font-size: var(--fs-base);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Container principal responsive */
+        /* Background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Container principal */
         .calculator-container {
             width: 100%;
-            max-width: min(800px, 95vw);
-            background: rgba(20, 27, 45, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: clamp(12px, 3vw, 16px);
-            border: 1px solid var(--border-color);
-            padding: var(--spacing-xl) var(--spacing-lg);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: min(900px, 95vw);
+            background: var(--willie-dark-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--willie-border);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--willie-shadow-xl);
             position: relative;
+            z-index: 2;
             overflow: hidden;
         }
 
-        /* Header responsive */
+        /* Glow effect */
+        .calculator-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--willie-gradient);
+            border-radius: 24px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .calculator-container:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Header */
         .calculator-header {
             text-align: center;
-            margin-bottom: var(--spacing-2xl);
+            margin-bottom: var(--spacing-3xl);
         }
 
         .calculator-header h1 {
             font-size: var(--fs-3xl);
+            font-weight: 700;
             margin-bottom: var(--spacing-md);
-            background: linear-gradient(135deg, #FFFFFF 0%, #00D4FF 50%);
+            background: linear-gradient(135deg, var(--willie-white) 0%, var(--willie-blue-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
-            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .calculator-header p {
-            color: var(--text-secondary);
+            color: var(--willie-gray-400);
             font-size: var(--fs-lg);
-            max-width: 100%;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Type selector responsive */
+        /* Type selector */
         .calculator-type-selector {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
         }
 
         .type-option {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: clamp(8px, 2vw, 12px);
-            padding: var(--spacing-lg);
+            background: var(--willie-card-bg);
+            border: 2px solid var(--willie-border);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
             cursor: pointer;
             transition: var(--transition);
             position: relative;
-            -webkit-tap-highlight-color: transparent;
+            overflow: hidden;
+        }
+
+        .type-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--willie-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .type-option:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--willie-blue-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--willie-shadow-lg);
+        }
+
+        .type-option:hover::before {
+            opacity: 0.05;
         }
 
         .type-option.selected {
-            background: rgba(0, 212, 255, 0.05);
-            border-color: var(--accent);
+            background: var(--willie-card-bg);
+            border-color: var(--willie-blue-primary);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.11);
+        }
+
+        .type-option.selected::before {
+            opacity: 0.1;
         }
 
         .type-option h3 {
-            color: var(--text-primary);
+            color: var(--willie-white);
             margin-bottom: var(--spacing-sm);
             display: flex;
             align-items: center;
             gap: var(--spacing-sm);
-            font-size: var(--fs-lg);
+            font-size: var(--fs-xl);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
         .type-option .icon {
-            font-size: 1.3em;
-            color: var(--accent);
+            font-size: 1.5em;
+            background: var(--willie-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             flex-shrink: 0;
         }
 
         .type-option p {
-            color: var(--text-secondary);
-            font-size: var(--fs-sm);
+            color: var(--willie-gray-300);
+            font-size: var(--fs-base);
             margin-bottom: var(--spacing-xs);
+            position: relative;
+            z-index: 1;
         }
 
         .type-option small {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: var(--fs-xs);
+            color: var(--willie-gray-500);
+            font-size: var(--fs-sm);
+            position: relative;
+            z-index: 1;
         }
 
-        /* Form responsive */
+        /* Form styles */
         .calculator-form {
             display: none;
             animation: fadeIn 0.5s ease-out;
@@ -195,21 +288,24 @@
 
         .form-step h2 {
             font-size: var(--fs-2xl);
-            margin-bottom: var(--spacing-lg);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xl);
+            color: var(--willie-white);
         }
 
-        /* Form controls responsive */
+        /* Form controls */
         .form-group {
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
             position: relative;
         }
 
         label {
             display: block;
             margin-bottom: var(--spacing-sm);
-            color: var(--text-secondary);
+            color: var(--willie-gray-300);
             font-weight: 500;
             font-size: var(--fs-sm);
+            letter-spacing: 0.01em;
         }
 
         input[type="text"],
@@ -218,59 +314,65 @@
         input[type="tel"],
         select {
             width: 100%;
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: clamp(6px, 1.5vw, 8px);
-            color: var(--text-primary);
+            padding: var(--spacing-md);
+            background: var(--willie-card-bg);
+            border: 2px solid var(--willie-border);
+            border-radius: 12px;
+            color: var(--willie-white);
             font-size: var(--fs-base);
             transition: var(--transition);
             -webkit-appearance: none;
             appearance: none;
+            font-family: inherit;
+        }
+
+        input::placeholder {
+            color: var(--willie-gray-500);
         }
 
         input:hover,
         select:hover {
-            border-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--willie-border-hover);
         }
 
         input:focus,
         select:focus {
             outline: none;
-            border-color: rgba(0, 212, 255, 0.5);
-            background: rgba(255, 255, 255, 0.02);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
+            border-color: var(--willie-blue-primary);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.07);
         }
 
-        /* Radio buttons responsive */
+        /* Radio buttons */
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-sm);
+            gap: var(--spacing-md);
         }
 
         .radio-option {
             display: flex;
             align-items: flex-start;
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: clamp(6px, 1.5vw, 8px);
+            padding: var(--spacing-lg);
+            background: var(--willie-card-bg);
+            border: 2px solid var(--willie-border);
+            border-radius: 12px;
             cursor: pointer;
             transition: var(--transition);
+            position: relative;
         }
 
         .radio-option:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--willie-border-hover);
+            background: rgba(255, 255, 255, 0.04);
         }
 
         .radio-option input[type="radio"] {
-            margin-right: var(--spacing-sm);
+            margin-right: var(--spacing-md);
             margin-top: 2px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent);
+            width: 20px;
+            height: 20px;
+            accent-color: var(--willie-blue-primary);
             flex-shrink: 0;
         }
 
@@ -280,85 +382,137 @@
             align-items: center;
             gap: var(--spacing-sm);
             margin-bottom: 0;
-            font-size: var(--fs-sm);
+            font-size: var(--fs-base);
+            color: var(--willie-white);
         }
 
         .radio-option input[type="number"] {
-            width: 120px;
-            min-width: 100px;
-            padding: var(--spacing-xs) var(--spacing-sm);
+            width: 150px;
+            min-width: 120px;
+            padding: var(--spacing-sm) var(--spacing-md);
             margin-top: var(--spacing-xs);
+            background: var(--willie-black);
+            border: 1px solid var(--willie-border);
         }
 
-        /* Buttons responsive */
+        /* Buttons */
         .button {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            background: #FFFFFF;
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: var(--willie-gradient);
             border: none;
-            border-radius: clamp(6px, 1.5vw, 8px);
-            color: #0A0E1A;
+            border-radius: 12px;
+            color: var(--willie-white);
             font-size: var(--fs-base);
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            box-shadow: var(--willie-shadow-md);
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            min-height: 44px;
+            min-height: 48px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            letter-spacing: 0.02em;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: width 0.6s, height 0.6s;
         }
 
         .button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+            box-shadow: var(--willie-shadow-lg);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.17) 0%, rgba(255, 255, 255, 0.23) 100%);
         }
 
         .button:active {
             transform: translateY(0);
         }
 
+        .button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .button.secondary {
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
+            border: 2px solid var(--willie-border);
+            color: var(--willie-white);
             box-shadow: none;
         }
 
         .button.secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--willie-gray-400);
+            transform: translateY(-1px);
         }
 
-        /* Navigation responsive */
+        /* Navigation */
         .form-navigation {
             display: flex;
             justify-content: space-between;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
             flex-wrap: wrap;
         }
 
-        /* Progress bar responsive */
+        /* Progress bar */
         .progress-bar {
-            height: 2px;
-            background: var(--border-color);
-            border-radius: 1px;
-            margin-bottom: var(--spacing-xl);
+            height: 4px;
+            background: var(--willie-border);
+            border-radius: 2px;
+            margin-bottom: var(--spacing-2xl);
             overflow: hidden;
+            position: relative;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--accent);
-            border-radius: 1px;
-            transition: width 0.5s ease-out;
+            background: var(--willie-gradient);
+            border-radius: 2px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Site navigation responsive */
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Site navigation */
         .site-navigation {
             margin: var(--spacing-xl) 0;
             display: flex;
@@ -375,27 +529,31 @@
         }
 
         .progress-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--willie-border);
             transition: var(--transition);
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+            position: relative;
         }
 
         .progress-dot.active {
-            background: #FFFFFF;
-            width: 12px;
-            height: 12px;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+            background: var(--willie-blue-primary);
+            width: 14px;
+            height: 14px;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.11);
         }
 
         .progress-dot.completed {
-            background: var(--accent);
+            background: var(--willie-green);
         }
 
-        /* Results section responsive */
+        .progress-dot:hover:not(.active) {
+            background: var(--willie-gray-500);
+        }
+
+        /* Results section */
         .calculator-results {
             display: none;
             animation: fadeIn 0.8s ease-out;
@@ -406,14 +564,14 @@
         }
 
         .main-savings {
-            background: rgba(0, 212, 255, 0.05);
-            border: 2px solid var(--accent);
-            border-radius: clamp(12px, 3vw, 16px);
-            padding: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
+            background: var(--willie-gradient);
+            border-radius: 20px;
+            padding: var(--spacing-3xl);
+            margin-bottom: var(--spacing-2xl);
             text-align: center;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--willie-shadow-xl);
         }
 
         .main-savings::before {
@@ -423,8 +581,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
             pointer-events: none;
         }
 
@@ -437,126 +595,191 @@
             margin-bottom: var(--spacing-md);
             position: relative;
             z-index: 1;
+            font-weight: 600;
+            color: var(--willie-white);
         }
 
         .savings-amount {
             font-size: var(--fs-4xl);
             font-weight: 700;
-            color: var(--accent);
-            margin: var(--spacing-lg) 0;
+            color: var(--willie-white);
+            margin: var(--spacing-xl) 0;
             position: relative;
             z-index: 1;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         }
 
         .teaser-message {
             position: relative;
             z-index: 1;
+            color: var(--willie-white);
         }
 
         .teaser-message p {
             font-size: var(--fs-lg);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            font-weight: 500;
         }
 
         .teaser-message ul {
             text-align: left;
             display: inline-block;
-            max-width: 100%;
+            max-width: 500px;
             font-size: var(--fs-base);
         }
 
         .teaser-message li {
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            list-style: none;
+            position: relative;
+            padding-left: var(--spacing-xl);
         }
 
-        /* Benefit cards responsive */
+        .teaser-message li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--willie-white);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Benefit cards */
         .additional-benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
         }
 
         .benefit-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: clamp(8px, 2vw, 12px);
-            padding: var(--spacing-lg);
+            background: var(--willie-card-bg);
+            border: 2px solid var(--willie-border);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--willie-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
         .benefit-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            border-color: var(--willie-blue-primary);
+            box-shadow: var(--willie-shadow-lg);
+        }
+
+        .benefit-card:hover::before {
+            opacity: 0.03;
         }
 
         .benefit-card .icon {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: var(--spacing-md);
             display: block;
+            position: relative;
+            z-index: 1;
         }
 
         .benefit-card h4 {
-            color: var(--accent);
+            color: var(--willie-white);
             margin-bottom: var(--spacing-sm);
             font-size: var(--fs-lg);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
         .benefit-card p {
-            color: var(--text-secondary);
+            color: var(--willie-gray-300);
             font-size: var(--fs-sm);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Email capture responsive */
+        /* Email capture */
         .calculator-cta {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: clamp(8px, 2vw, 12px);
-            padding: var(--spacing-xl);
+            background: var(--willie-card-bg);
+            border: 2px solid var(--willie-border);
+            border-radius: 20px;
+            padding: var(--spacing-3xl);
             text-align: center;
-            margin-top: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-cta::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--willie-gradient);
+            border-radius: 20px;
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .calculator-cta h3 {
-            color: var(--text-primary);
+            color: var(--willie-white);
             margin-bottom: var(--spacing-md);
-            font-size: var(--fs-xl);
+            font-size: var(--fs-2xl);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
 
         .calculator-cta p {
             font-size: var(--fs-base);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            color: var(--willie-gray-300);
+            position: relative;
+            z-index: 1;
         }
 
-        /* Elegant form responsive */
+        /* Elegant form */
         .elegant-form {
             max-width: 500px;
             margin: 0 auto;
-            margin-top: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            position: relative;
+            z-index: 1;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
         }
 
         .form-field {
             position: relative;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
         }
 
         .form-field input {
             width: 100%;
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: clamp(6px, 1.5vw, 8px);
-            color: var(--text-primary);
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.04);
+            border: 2px solid var(--willie-border);
+            border-radius: 12px;
+            color: var(--willie-white);
             font-size: var(--fs-base);
             transition: var(--transition);
         }
@@ -566,68 +789,70 @@
             left: var(--spacing-md);
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
+            color: var(--willie-gray-400);
             font-size: var(--fs-base);
             pointer-events: none;
             transition: var(--transition);
-            background: rgba(20, 27, 45, 0.95);
-            padding: 0 4px;
+            background: var(--willie-card-bg);
+            padding: 0 8px;
         }
 
         .form-field input:focus + label,
         .form-field input:valid + label {
             top: 0;
-            font-size: var(--fs-xs);
-            color: var(--accent);
+            font-size: var(--fs-sm);
+            color: var(--willie-blue-primary);
         }
 
         .consent-group {
             display: flex;
             align-items: flex-start;
-            margin: var(--spacing-lg) 0;
-            padding: var(--spacing-md);
-            background: rgba(0, 212, 255, 0.03);
-            border-radius: clamp(6px, 1.5vw, 8px);
-            border: 1px solid rgba(0, 212, 255, 0.08);
+            margin: var(--spacing-xl) 0;
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.07);
         }
 
         .consent-group input[type="checkbox"] {
-            margin-right: var(--spacing-sm);
+            margin-right: var(--spacing-md);
             margin-top: 2px;
-            width: 16px;
-            height: 16px;
-            accent-color: var(--accent);
+            width: 18px;
+            height: 18px;
+            accent-color: var(--willie-blue-primary);
             cursor: pointer;
             flex-shrink: 0;
         }
 
         .consent-group label {
             font-size: var(--fs-sm);
-            color: var(--text-secondary);
+            color: var(--willie-gray-300);
             cursor: pointer;
-            line-height: 1.4;
+            line-height: 1.5;
             margin-bottom: 0;
         }
 
         .submit-button {
             width: 100%;
-            padding: var(--spacing-md) var(--spacing-lg);
+            padding: var(--spacing-lg);
             font-size: var(--fs-base);
-            margin-top: var(--spacing-sm);
-            background: var(--accent);
-            color: white;
+            margin-top: var(--spacing-lg);
+            background: var(--willie-gradient-green);
             font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.07);
         }
 
         .submit-button:hover {
-            background: #00B8E6;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.39) 0%, rgba(255, 255, 255, 0.33) 100%);
+            box-shadow: 0 6px 30px rgba(255, 255, 255, 0.11);
         }
 
-        /* Loading state responsive */
+        /* Loading state */
         .loading {
             display: none;
             text-align: center;
-            padding: var(--spacing-2xl);
+            padding: var(--spacing-3xl);
         }
 
         .loading.active {
@@ -635,28 +860,30 @@
         }
 
         .loading p {
-            font-size: var(--fs-base);
+            font-size: var(--fs-lg);
+            color: var(--willie-gray-300);
+            margin-top: var(--spacing-xl);
         }
 
         .spinner {
-            width: 48px;
-            height: 48px;
-            border: 3px solid rgba(0, 212, 255, 0.1);
-            border-top-color: var(--accent);
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--willie-border);
+            border-top-color: var(--willie-blue-primary);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto var(--spacing-lg);
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin: 0 auto;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Success message responsive */
+        /* Success message */
         .success-message {
             display: none;
             text-align: center;
-            padding: var(--spacing-2xl);
+            padding: var(--spacing-3xl);
         }
 
         .success-message.active {
@@ -667,34 +894,43 @@
         .success-message h2 {
             font-size: var(--fs-2xl);
             margin-bottom: var(--spacing-md);
+            color: var(--willie-white);
         }
 
         .success-message p {
             font-size: var(--fs-base);
             margin-bottom: var(--spacing-sm);
+            color: var(--willie-gray-300);
         }
 
         .success-icon {
-            font-size: 3em;
-            color: var(--success);
-            margin-bottom: var(--spacing-lg);
+            font-size: 4em;
+            color: var(--willie-green);
+            margin-bottom: var(--spacing-xl);
+            display: inline-block;
+            animation: pulseScale 2s ease-in-out infinite;
         }
 
-        /* Address autocomplete responsive */
+        @keyframes pulseScale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Address autocomplete */
         .address-suggestions {
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
-            background: rgba(20, 27, 45, 0.98);
-            border: 1px solid var(--border-color);
-            border-radius: clamp(6px, 1.5vw, 8px);
-            margin-top: 4px;
-            max-height: 200px;
+            background: var(--willie-card-bg);
+            border: 2px solid var(--willie-border);
+            border-radius: 12px;
+            margin-top: 8px;
+            max-height: 240px;
             overflow-y: auto;
             display: none;
             z-index: 10;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: var(--willie-shadow-lg);
         }
 
         .address-suggestions.active {
@@ -702,11 +938,12 @@
         }
 
         .address-suggestion {
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: var(--spacing-md);
             cursor: pointer;
             transition: var(--transition);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--willie-border);
             font-size: var(--fs-base);
+            color: var(--willie-gray-300);
         }
 
         .address-suggestion:last-child {
@@ -714,37 +951,37 @@
         }
 
         .address-suggestion:hover {
-            background: rgba(0, 212, 255, 0.08);
-            color: var(--accent);
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--willie-white);
         }
 
-        /* Tooltips responsive */
+        /* Tooltips */
         .tooltip {
             position: relative;
             display: inline-block;
             cursor: help;
-            margin-left: 4px;
+            margin-left: 8px;
         }
 
         .tooltip .tooltiptext {
             visibility: hidden;
-            width: min(250px, 80vw);
-            background-color: rgba(20, 27, 45, 0.98);
-            color: var(--text-secondary);
+            width: min(280px, 80vw);
+            background-color: var(--willie-card-bg);
+            color: var(--willie-gray-300);
             text-align: left;
-            border-radius: 6px;
-            padding: var(--spacing-sm);
+            border-radius: 8px;
+            padding: var(--spacing-md);
             position: absolute;
             z-index: 1;
             bottom: 125%;
             left: 50%;
-            margin-left: -125px;
+            margin-left: -140px;
             opacity: 0;
             transition: opacity 0.3s;
-            font-size: var(--fs-xs);
-            line-height: 1.4;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            font-size: var(--fs-sm);
+            line-height: 1.5;
+            border: 1px solid var(--willie-border);
+            box-shadow: var(--willie-shadow-md);
         }
 
         .tooltip:hover .tooltiptext {
@@ -755,41 +992,61 @@
         /* Metric highlights */
         .metric {
             display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.07);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 24px;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--willie-blue-primary);
             margin: 0 4px;
             font-size: var(--fs-sm);
+            border: 1px solid rgba(255, 255, 255, 0.11);
         }
 
-        /* Tablet specific styles */
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--willie-black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--willie-gray-600);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--willie-gray-500);
+        }
+
+        /* Tablet styles */
         @media (max-width: 768px) {
             .calculator-container {
-                padding: var(--spacing-lg) var(--spacing-md);
-                border-radius: 12px;
+                padding: var(--spacing-xl);
+                border-radius: 20px;
             }
 
             .form-navigation {
-                gap: var(--spacing-sm);
+                gap: var(--spacing-md);
             }
 
             .button {
                 flex: 1;
-                min-width: 120px;
+                min-width: 140px;
             }
 
             .type-option {
-                padding: var(--spacing-md);
-            }
-
-            .main-savings {
                 padding: var(--spacing-lg);
             }
 
+            .main-savings {
+                padding: var(--spacing-2xl);
+            }
+
             .benefit-card {
-                padding: var(--spacing-md);
+                padding: var(--spacing-lg);
             }
 
             .radio-option label {
@@ -799,29 +1056,30 @@
 
             .radio-option input[type="number"] {
                 width: 100%;
-                margin-top: var(--spacing-sm);
+                margin-top: var(--spacing-md);
             }
 
-            .tooltip .tooltiptext {
-                bottom: auto;
-                top: 125%;
-                left: -125px;
-                margin-left: 0;
+            .calculator-cta {
+                padding: var(--spacing-2xl);
             }
         }
 
-        /* Mobile specific styles */
+        /* Mobile styles */
         @media (max-width: 480px) {
             body {
                 padding: var(--spacing-sm);
                 align-items: flex-start;
-                padding-top: var(--spacing-lg);
+                padding-top: var(--spacing-xl);
             }
 
             .calculator-container {
                 min-height: 100vh;
-                border-radius: 8px;
-                padding: var(--spacing-md);
+                border-radius: 16px;
+                padding: var(--spacing-lg);
+            }
+
+            .calculator-header h1 {
+                font-size: var(--fs-2xl);
             }
 
             .calculator-type-selector {
@@ -845,27 +1103,26 @@
                 grid-template-columns: 1fr;
             }
 
-            .progress-dots {
-                max-width: 100%;
-                padding: 0 var(--spacing-sm);
+            .main-savings {
+                padding: var(--spacing-xl);
+            }
+
+            .calculator-cta {
+                padding: var(--spacing-xl);
             }
 
             .teaser-message ul {
-                padding-left: var(--spacing-lg);
-            }
-
-            .main-savings h2 {
-                font-size: var(--fs-lg);
+                padding-left: var(--spacing-xl);
             }
 
             .address-suggestions {
-                max-height: 150px;
+                max-height: 180px;
             }
 
             .tooltip .tooltiptext {
-                width: calc(100vw - 40px);
-                left: 50%;
-                transform: translateX(-50%);
+                bottom: auto;
+                top: 125%;
+                left: -120px;
                 margin-left: 0;
             }
         }
@@ -883,39 +1140,23 @@
             }
 
             .calculator-header {
-                margin-bottom: var(--spacing-lg);
+                margin-bottom: var(--spacing-xl);
             }
 
             .main-savings {
-                padding: var(--spacing-md);
+                padding: var(--spacing-lg);
             }
         }
 
-        /* Print styles */
-        @media print {
-            .button {
-                display: none;
-            }
-
-            .progress-bar,
-            .form-navigation,
-            .calculator-cta {
-                display: none;
-            }
-        }
-
-        /* High resolution screens */
+        /* High DPI screens */
         @media (min-resolution: 2dppx) {
-            .calculator-container {
-                border-width: 0.5px;
-            }
-
-            .progress-bar {
-                height: 1px;
+            .calculator-container,
+            .type-option,
+            .radio-option,
+            .benefit-card {
+                border-width: 1px;
             }
         }
-
-
 
         /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
@@ -928,29 +1169,29 @@
             }
         }
 
-        /* Touch device optimizations */
+        /* Touch optimizations */
         @media (hover: none) and (pointer: coarse) {
             .button,
             .type-option,
             .radio-option,
             .progress-dot {
-                min-height: 44px;
-                min-width: 44px;
+                min-height: 48px;
+                min-width: 48px;
             }
 
             input[type="checkbox"],
             input[type="radio"] {
-                min-width: 20px;
-                min-height: 20px;
+                min-width: 24px;
+                min-height: 24px;
             }
         }
 
         /* Very small devices */
         @media (max-width: 320px) {
             :root {
-                --fs-base: 0.875rem;
-                --fs-3xl: 1.5rem;
-                --fs-4xl: 2rem;
+                --fs-base: 0.9375rem;
+                --fs-3xl: 1.75rem;
+                --fs-4xl: 2.25rem;
             }
 
             .calculator-header h1 {
@@ -962,14 +1203,34 @@
                 word-break: break-all;
             }
         }
+
+        /* Print styles */
+        @media print {
+            .button,
+            .progress-bar,
+            .form-navigation,
+            .calculator-cta {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .calculator-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="calculator-container">
         <!-- Header -->
         <div class="calculator-header">
-            <h1>Réduisez votre facture d'eau grâce à la télérelève intelligente</h1>
-            <p>Willie automatise vos relevés de compteurs, détecte les fuites en temps réel et optimise votre consommation. Découvrez vos économies potentielles en moins de 2 minutes avec notre simulateur gratuit.</p>
+            <h1>Calculez vos économies d'eau avec Willie</h1>
+            <p>Découvrez en 2 minutes combien vous pouvez économiser grâce à notre solution de télérelève intelligente. Détection de fuites en temps réel, automatisation des relevés et optimisation de votre consommation.</p>
         </div>
 
         <!-- Progress bar -->
@@ -1062,7 +1323,7 @@
                         <label for="siteAddress">
                             Adresse du site
                             <span class="tooltip">
-                                <span style="font-size: 0.8em; color: var(--accent);">ℹ</span>
+                                <span style="font-size: 0.9em; color: var(--willie-blue-primary);">ℹ</span>
                                 <span class="tooltiptext">L'adresse nous permet de déterminer précisément le coût de l'eau dans votre commune pour un calcul plus précis</span>
                             </span>
                         </label>
@@ -1090,7 +1351,7 @@
                 </div>
 
                 <div class="form-navigation">
-                    <button class="button secondary" onclick="navigateSite('prev')">← Retour</button>
+                    <button class="button secondary" onclick="navigateSite('prev')">← Précédent</button>
                     <button class="button" id="nextSiteBtn" onclick="navigateSite('next')">Suivant →</button>
                 </div>
             </div>
@@ -1109,21 +1370,22 @@
             </div>
             
             <div class="main-savings">
-                <h2>💰 VOS ÉCONOMIES POTENTIELLES DÉTECTÉES</h2>
+                <h2>💰 VOS ÉCONOMIES POTENTIELLES AVEC WILLIE</h2>
                 <div class="savings-amount">
                     <span class="counter" id="totalSavings">0</span> €/an
                 </div>
-                <p>Économies annuelles estimées</p>
+                <p>Économies annuelles estimées sur votre facture d'eau</p>
                 <div class="teaser-message">
-                    <p style="color: var(--accent); font-size: var(--fs-lg); margin-bottom: var(--spacing-lg);">
-                        🔒 Débloquez votre rapport complet pour découvrir :
+                    <p style="font-weight: 600; margin-bottom: var(--spacing-xl);">
+                        🔓 Débloquez votre analyse complète personnalisée :
                     </p>
-                    <ul style="text-align: left; display: inline-block; color: var(--text-secondary);">
-                        <li>📊 Le détail précis de vos économies d'eau</li>
-                        <li>⏱️ Les heures de productivité gagnées</li>
-                        <li>📈 Votre projection sur 5 ans</li>
-                        <li>🛡️ Votre protection contre les amendes CSRD</li>
-                        <li>🌿 L'impact sur votre score ESG</li>
+                    <ul>
+                        <li>Détail précis de vos économies par poste</li>
+                        <li>Heures de productivité récupérées</li>
+                        <li>Projection financière sur 5 ans</li>
+                        <li>Protection contre les amendes CSRD</li>
+                        <li>Impact sur votre notation ESG</li>
+                        <li>Plan d'action personnalisé</li>
                     </ul>
                 </div>
             </div>
@@ -1131,26 +1393,24 @@
             <div class="additional-benefits">
                 <div class="benefit-card">
                     <span class="icon">🛡️</span>
-                    <h4>Risques évités</h4>
-                    <p>Amendes CSRD/DPEF jusqu'à 3,75M€<br>✓ Reporting automatisé</p>
+                    <h4>Conformité garantie</h4>
+                    <p>Évitez jusqu'à 3,75M€ d'amendes CSRD<br>Reporting eau automatisé et certifié</p>
                 </div>
                 <div class="benefit-card">
                     <span class="icon">🌿</span>
-                    <h4>Impact RSE</h4>
-                    <p>Score ESG amélioré<br>+15% notation extra-financière</p>
+                    <h4>Performance RSE</h4>
+                    <p>+15% sur votre notation extra-financière<br>Améliorez votre score ESG instantanément</p>
                 </div>
                 <div class="benefit-card">
-                    <span class="icon">🔧</span>
-                    <h4>Maintenance optimisée</h4>
-                    <p>-95% délai intervention fuites<br>Jusqu'à 120k€/fuite évitée</p>
+                    <span class="icon">⚡</span>
+                    <h4>Réactivité maximale</h4>
+                    <p>Détection de fuites en temps réel<br>-95% sur les délais d'intervention</p>
                 </div>
             </div>
 
             <div class="calculator-cta">
-                <h3>🔓 Débloquez votre rapport détaillé personnalisé</h3>
-                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
-                    Recevez immédiatement votre analyse complète avec toutes vos économies détaillées
-                </p>
+                <h3>📊 Recevez votre rapport détaillé personnalisé</h3>
+                <p>Obtenez immédiatement votre analyse complète avec plan d'action sur mesure</p>
                 <form class="elegant-form" id="emailForm">
                     <div class="form-row">
                         <div class="form-field">
@@ -1173,11 +1433,11 @@
                     
                     <div class="consent-group">
                         <input type="checkbox" id="consent" checked>
-                        <label for="consent">J'accepte de recevoir mon rapport personnalisé et d'être contacté par un expert Willie</label>
+                        <label for="consent">J'accepte de recevoir mon rapport personnalisé et d'être contacté par un expert Willie pour discuter de mon projet</label>
                     </div>
                     
                     <button type="button" class="button submit-button" onclick="submitEmail()">
-                        Recevoir mon rapport détaillé →
+                        Recevoir mon rapport complet →
                     </button>
                 </form>
             </div>
@@ -1186,9 +1446,9 @@
         <!-- Success message -->
         <div class="success-message" id="successMessage">
             <div class="success-icon">✅</div>
-            <h2>Parfait !</h2>
-            <p>Votre rapport personnalisé a été envoyé à votre adresse email.</p>
-            <p>Un expert Willie va vous contacter dans les 24h pour discuter de vos besoins.</p>
+            <h2>Parfait ! Votre rapport est en route</h2>
+            <p>Votre analyse personnalisée a été envoyée à votre adresse email.</p>
+            <p>Un expert Willie prendra contact avec vous sous 24h pour échanger sur vos besoins spécifiques.</p>
         </div>
     </div>
 
