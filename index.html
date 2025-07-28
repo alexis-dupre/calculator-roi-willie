@@ -1,1784 +1,1777 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur ROI Willie - Économies d'eau garanties</title>
+    
+    <style>
+        /* Variables CSS */
+        :root {
+            --bg-primary: #0A0E1A;
+            --bg-secondary: #141B2D;
+            --accent: #00D4FF;
+            --success: #00FF88;
+            --error: #FF4444;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8BCC8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition: all 0.2s ease;
+            
+            /* Responsive font sizes */
+            --fs-xs: clamp(0.75rem, 2vw, 0.85rem);
+            --fs-sm: clamp(0.875rem, 2.5vw, 0.95rem);
+            --fs-base: clamp(0.9375rem, 3vw, 1rem);
+            --fs-lg: clamp(1.0625rem, 3.5vw, 1.125rem);
+            --fs-xl: clamp(1.25rem, 4vw, 1.5rem);
+            --fs-2xl: clamp(1.5rem, 5vw, 1.875rem);
+            --fs-3xl: clamp(1.875rem, 6vw, 2.5rem);
+            --fs-4xl: clamp(2.25rem, 7vw, 3rem);
+            
+            /* Responsive spacing */
+            --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+            --spacing-sm: clamp(0.5rem, 2vw, 0.75rem);
+            --spacing-md: clamp(0.75rem, 3vw, 1rem);
+            --spacing-lg: clamp(1rem, 4vw, 1.5rem);
+            --spacing-xl: clamp(1.5rem, 5vw, 2rem);
+            --spacing-2xl: clamp(2rem, 6vw, 3rem);
+        }
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="fr">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Calculateur ROI Willie - \'c9conomies d'eau garanties</title>\
-    \
-    <style>\
-        /* Variables CSS */\
-        :root \{\
-            --bg-primary: #0A0E1A;\
-            --bg-secondary: #141B2D;\
-            --accent: #00D4FF;\
-            --success: #00FF88;\
-            --error: #FF4444;\
-            --text-primary: #FFFFFF;\
-            --text-secondary: #B8BCC8;\
-            --border-color: rgba(255, 255, 255, 0.08);\
-            --transition: all 0.2s ease;\
-            \
-            /* Responsive font sizes */\
-            --fs-xs: clamp(0.75rem, 2vw, 0.85rem);\
-            --fs-sm: clamp(0.875rem, 2.5vw, 0.95rem);\
-            --fs-base: clamp(0.9375rem, 3vw, 1rem);\
-            --fs-lg: clamp(1.0625rem, 3.5vw, 1.125rem);\
-            --fs-xl: clamp(1.25rem, 4vw, 1.5rem);\
-            --fs-2xl: clamp(1.5rem, 5vw, 1.875rem);\
-            --fs-3xl: clamp(1.875rem, 6vw, 2.5rem);\
-            --fs-4xl: clamp(2.25rem, 7vw, 3rem);\
-            \
-            /* Responsive spacing */\
-            --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);\
-            --spacing-sm: clamp(0.5rem, 2vw, 0.75rem);\
-            --spacing-md: clamp(0.75rem, 3vw, 1rem);\
-            --spacing-lg: clamp(1rem, 4vw, 1.5rem);\
-            --spacing-xl: clamp(1.5rem, 5vw, 2rem);\
-            --spacing-2xl: clamp(2rem, 6vw, 3rem);\
-        \}\
-\
-        /* Reset et base */\
-        * \{\
-            margin: 0;\
-            padding: 0;\
-            box-sizing: border-box;\
-        \}\
-\
-        body \{\
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\
-            background: var(--bg-primary);\
-            color: var(--text-primary);\
-            line-height: 1.6;\
-            min-height: 100vh;\
-            display: flex;\
-            justify-content: center;\
-            align-items: center;\
-            padding: var(--spacing-md);\
-            font-size: var(--fs-base);\
-            overflow-x: hidden;\
-        \}\
-\
-        /* Container principal responsive */\
-        .calculator-container \{\
-            width: 100%;\
-            max-width: min(800px, 95vw);\
-            background: rgba(20, 27, 45, 0.95);\
-            backdrop-filter: blur(10px);\
-            border-radius: clamp(12px, 3vw, 16px);\
-            border: 1px solid var(--border-color);\
-            padding: var(--spacing-xl) var(--spacing-lg);\
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);\
-            position: relative;\
-            overflow: hidden;\
-        \}\
-\
-        /* Header responsive */\
-        .calculator-header \{\
-            text-align: center;\
-            margin-bottom: var(--spacing-2xl);\
-        \}\
-\
-        .calculator-header h1 \{\
-            font-size: var(--fs-3xl);\
-            margin-bottom: var(--spacing-md);\
-            background: linear-gradient(135deg, #FFFFFF 0%, #00D4FF 50%);\
-            -webkit-background-clip: text;\
-            -webkit-text-fill-color: transparent;\
-            background-clip: text;\
-            line-height: 1.2;\
-            font-weight: 700;\
-        \}\
-\
-        .calculator-header p \{\
-            color: var(--text-secondary);\
-            font-size: var(--fs-lg);\
-            max-width: 100%;\
-            margin: 0 auto;\
-            line-height: 1.6;\
-        \}\
-\
-        /* Type selector responsive */\
-        .calculator-type-selector \{\
-            display: grid;\
-            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));\
-            gap: var(--spacing-md);\
-            margin-bottom: var(--spacing-xl);\
-        \}\
-\
-        .type-option \{\
-            background: transparent;\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(8px, 2vw, 12px);\
-            padding: var(--spacing-lg);\
-            cursor: pointer;\
-            transition: var(--transition);\
-            position: relative;\
-            -webkit-tap-highlight-color: transparent;\
-        \}\
-\
-        .type-option:hover \{\
-            border-color: rgba(255, 255, 255, 0.2);\
-            background: rgba(255, 255, 255, 0.02);\
-        \}\
-\
-        .type-option.selected \{\
-            background: rgba(0, 212, 255, 0.05);\
-            border-color: var(--accent);\
-        \}\
-\
-        .type-option h3 \{\
-            color: var(--text-primary);\
-            margin-bottom: var(--spacing-sm);\
-            display: flex;\
-            align-items: center;\
-            gap: var(--spacing-sm);\
-            font-size: var(--fs-lg);\
-        \}\
-\
-        .type-option .icon \{\
-            font-size: 1.3em;\
-            color: var(--accent);\
-            flex-shrink: 0;\
-        \}\
-\
-        .type-option p \{\
-            color: var(--text-secondary);\
-            font-size: var(--fs-sm);\
-            margin-bottom: var(--spacing-xs);\
-        \}\
-\
-        .type-option small \{\
-            color: rgba(255, 255, 255, 0.5);\
-            font-size: var(--fs-xs);\
-        \}\
-\
-        /* Form responsive */\
-        .calculator-form \{\
-            display: none;\
-            animation: fadeIn 0.5s ease-out;\
-        \}\
-\
-        .calculator-form.active \{\
-            display: block;\
-        \}\
-\
-        @keyframes fadeIn \{\
-            from \{\
-                opacity: 0;\
-                transform: translateY(20px);\
-            \}\
-            to \{\
-                opacity: 1;\
-                transform: translateY(0);\
-            \}\
-        \}\
-\
-        .form-step \{\
-            display: none;\
-        \}\
-\
-        .form-step.active \{\
-            display: block;\
-            animation: slideIn 0.5s ease-out;\
-        \}\
-\
-        @keyframes slideIn \{\
-            from \{\
-                opacity: 0;\
-                transform: translateX(20px);\
-            \}\
-            to \{\
-                opacity: 1;\
-                transform: translateX(0);\
-            \}\
-        \}\
-\
-        .form-step h2 \{\
-            font-size: var(--fs-2xl);\
-            margin-bottom: var(--spacing-lg);\
-        \}\
-\
-        /* Form controls responsive */\
-        .form-group \{\
-            margin-bottom: var(--spacing-lg);\
-            position: relative;\
-        \}\
-\
-        label \{\
-            display: block;\
-            margin-bottom: var(--spacing-sm);\
-            color: var(--text-secondary);\
-            font-weight: 500;\
-            font-size: var(--fs-sm);\
-        \}\
-\
-        input[type="text"],\
-        input[type="number"],\
-        input[type="email"],\
-        input[type="tel"],\
-        select \{\
-            width: 100%;\
-            padding: var(--spacing-sm) var(--spacing-md);\
-            background: transparent;\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(6px, 1.5vw, 8px);\
-            color: var(--text-primary);\
-            font-size: var(--fs-base);\
-            transition: var(--transition);\
-            -webkit-appearance: none;\
-            appearance: none;\
-        \}\
-\
-        input:hover,\
-        select:hover \{\
-            border-color: rgba(255, 255, 255, 0.15);\
-        \}\
-\
-        input:focus,\
-        select:focus \{\
-            outline: none;\
-            border-color: rgba(0, 212, 255, 0.5);\
-            background: rgba(255, 255, 255, 0.02);\
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);\
-        \}\
-\
-        /* Radio buttons responsive */\
-        .radio-group \{\
-            display: flex;\
-            flex-direction: column;\
-            gap: var(--spacing-sm);\
-        \}\
-\
-        .radio-option \{\
-            display: flex;\
-            align-items: flex-start;\
-            padding: var(--spacing-sm) var(--spacing-md);\
-            background: transparent;\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(6px, 1.5vw, 8px);\
-            cursor: pointer;\
-            transition: var(--transition);\
-        \}\
-\
-        .radio-option:hover \{\
-            border-color: rgba(255, 255, 255, 0.15);\
-            background: rgba(255, 255, 255, 0.02);\
-        \}\
-\
-        .radio-option input[type="radio"] \{\
-            margin-right: var(--spacing-sm);\
-            margin-top: 2px;\
-            width: 18px;\
-            height: 18px;\
-            accent-color: var(--accent);\
-            flex-shrink: 0;\
-        \}\
-\
-        .radio-option label \{\
-            display: flex;\
-            flex-wrap: wrap;\
-            align-items: center;\
-            gap: var(--spacing-sm);\
-            margin-bottom: 0;\
-            font-size: var(--fs-sm);\
-        \}\
-\
-        .radio-option input[type="number"] \{\
-            width: 120px;\
-            min-width: 100px;\
-            padding: var(--spacing-xs) var(--spacing-sm);\
-            margin-top: var(--spacing-xs);\
-        \}\
-\
-        /* Buttons responsive */\
-        .button \{\
-            padding: var(--spacing-sm) var(--spacing-lg);\
-            background: #FFFFFF;\
-            border: none;\
-            border-radius: clamp(6px, 1.5vw, 8px);\
-            color: #0A0E1A;\
-            font-size: var(--fs-base);\
-            font-weight: 600;\
-            cursor: pointer;\
-            transition: var(--transition);\
-            position: relative;\
-            overflow: hidden;\
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\
-            -webkit-tap-highlight-color: transparent;\
-            touch-action: manipulation;\
-            min-height: 44px;\
-            display: inline-flex;\
-            align-items: center;\
-            justify-content: center;\
-        \}\
-\
-        .button:hover \{\
-            transform: translateY(-1px);\
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);\
-        \}\
-\
-        .button:active \{\
-            transform: translateY(0);\
-        \}\
-\
-        .button.secondary \{\
-            background: transparent;\
-            border: 1px solid rgba(255, 255, 255, 0.2);\
-            color: var(--text-primary);\
-            box-shadow: none;\
-        \}\
-\
-        .button.secondary:hover \{\
-            background: rgba(255, 255, 255, 0.05);\
-            border-color: rgba(255, 255, 255, 0.3);\
-        \}\
-\
-        /* Navigation responsive */\
-        .form-navigation \{\
-            display: flex;\
-            justify-content: space-between;\
-            gap: var(--spacing-md);\
-            margin-top: var(--spacing-xl);\
-            flex-wrap: wrap;\
-        \}\
-\
-        /* Progress bar responsive */\
-        .progress-bar \{\
-            height: 2px;\
-            background: var(--border-color);\
-            border-radius: 1px;\
-            margin-bottom: var(--spacing-xl);\
-            overflow: hidden;\
-        \}\
-\
-        .progress-fill \{\
-            height: 100%;\
-            background: var(--accent);\
-            border-radius: 1px;\
-            transition: width 0.5s ease-out;\
-        \}\
-\
-        /* Site navigation responsive */\
-        .site-navigation \{\
-            margin: var(--spacing-xl) 0;\
-            display: flex;\
-            justify-content: center;\
-        \}\
-\
-        .progress-dots \{\
-            display: flex;\
-            gap: var(--spacing-sm);\
-            align-items: center;\
-            flex-wrap: wrap;\
-            justify-content: center;\
-            max-width: 100%;\
-        \}\
-\
-        .progress-dot \{\
-            width: 10px;\
-            height: 10px;\
-            border-radius: 50%;\
-            background: rgba(255, 255, 255, 0.2);\
-            transition: var(--transition);\
-            cursor: pointer;\
-            -webkit-tap-highlight-color: transparent;\
-        \}\
-\
-        .progress-dot.active \{\
-            background: #FFFFFF;\
-            width: 12px;\
-            height: 12px;\
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);\
-        \}\
-\
-        .progress-dot.completed \{\
-            background: var(--accent);\
-        \}\
-\
-        /* Results section responsive */\
-        .calculator-results \{\
-            display: none;\
-            animation: fadeIn 0.8s ease-out;\
-        \}\
-\
-        .calculator-results.active \{\
-            display: block;\
-        \}\
-\
-        .main-savings \{\
-            background: rgba(0, 212, 255, 0.05);\
-            border: 2px solid var(--accent);\
-            border-radius: clamp(12px, 3vw, 16px);\
-            padding: var(--spacing-xl);\
-            margin-bottom: var(--spacing-xl);\
-            text-align: center;\
-            position: relative;\
-            overflow: hidden;\
-        \}\
-\
-        .main-savings::before \{\
-            content: '';\
-            position: absolute;\
-            top: -50%;\
-            left: -50%;\
-            width: 200%;\
-            height: 200%;\
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);\
-            animation: rotate 20s linear infinite;\
-            pointer-events: none;\
-        \}\
-\
-        @keyframes rotate \{\
-            to \{ transform: rotate(360deg); \}\
-        \}\
-\
-        .main-savings h2 \{\
-            font-size: var(--fs-xl);\
-            margin-bottom: var(--spacing-md);\
-            position: relative;\
-            z-index: 1;\
-        \}\
-\
-        .savings-amount \{\
-            font-size: var(--fs-4xl);\
-            font-weight: 700;\
-            color: var(--accent);\
-            margin: var(--spacing-lg) 0;\
-            position: relative;\
-            z-index: 1;\
-        \}\
-\
-        .teaser-message \{\
-            position: relative;\
-            z-index: 1;\
-        \}\
-\
-        .teaser-message p \{\
-            font-size: var(--fs-lg);\
-            margin-bottom: var(--spacing-lg);\
-        \}\
-\
-        .teaser-message ul \{\
-            text-align: left;\
-            display: inline-block;\
-            max-width: 100%;\
-            font-size: var(--fs-base);\
-        \}\
-\
-        .teaser-message li \{\
-            margin-bottom: var(--spacing-sm);\
-        \}\
-\
-        /* Benefit cards responsive */\
-        .additional-benefits \{\
-            display: grid;\
-            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));\
-            gap: var(--spacing-md);\
-            margin-bottom: var(--spacing-xl);\
-        \}\
-\
-        .benefit-card \{\
-            background: rgba(255, 255, 255, 0.03);\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(8px, 2vw, 12px);\
-            padding: var(--spacing-lg);\
-            transition: var(--transition);\
-            position: relative;\
-            overflow: hidden;\
-        \}\
-\
-        .benefit-card:hover \{\
-            transform: translateY(-2px);\
-            border-color: var(--accent);\
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);\
-        \}\
-\
-        .benefit-card .icon \{\
-            font-size: 2em;\
-            margin-bottom: var(--spacing-md);\
-            display: block;\
-        \}\
-\
-        .benefit-card h4 \{\
-            color: var(--accent);\
-            margin-bottom: var(--spacing-sm);\
-            font-size: var(--fs-lg);\
-        \}\
-\
-        .benefit-card p \{\
-            color: var(--text-secondary);\
-            font-size: var(--fs-sm);\
-        \}\
-\
-        /* Email capture responsive */\
-        .calculator-cta \{\
-            background: rgba(255, 255, 255, 0.02);\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(8px, 2vw, 12px);\
-            padding: var(--spacing-xl);\
-            text-align: center;\
-            margin-top: var(--spacing-lg);\
-        \}\
-\
-        .calculator-cta h3 \{\
-            color: var(--text-primary);\
-            margin-bottom: var(--spacing-md);\
-            font-size: var(--fs-xl);\
-        \}\
-\
-        .calculator-cta p \{\
-            font-size: var(--fs-base);\
-            margin-bottom: var(--spacing-lg);\
-        \}\
-\
-        /* Elegant form responsive */\
-        .elegant-form \{\
-            max-width: 500px;\
-            margin: 0 auto;\
-            margin-top: var(--spacing-lg);\
-        \}\
-\
-        .form-row \{\
-            display: grid;\
-            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));\
-            gap: var(--spacing-md);\
-            margin-bottom: var(--spacing-md);\
-        \}\
-\
-        .form-field \{\
-            position: relative;\
-            margin-bottom: var(--spacing-md);\
-        \}\
-\
-        .form-field input \{\
-            width: 100%;\
-            padding: var(--spacing-sm) var(--spacing-md);\
-            background: rgba(255, 255, 255, 0.03);\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(6px, 1.5vw, 8px);\
-            color: var(--text-primary);\
-            font-size: var(--fs-base);\
-            transition: var(--transition);\
-        \}\
-\
-        .form-field label \{\
-            position: absolute;\
-            left: var(--spacing-md);\
-            top: 50%;\
-            transform: translateY(-50%);\
-            color: var(--text-secondary);\
-            font-size: var(--fs-base);\
-            pointer-events: none;\
-            transition: var(--transition);\
-            background: rgba(20, 27, 45, 0.95);\
-            padding: 0 4px;\
-        \}\
-\
-        .form-field input:focus + label,\
-        .form-field input:valid + label \{\
-            top: 0;\
-            font-size: var(--fs-xs);\
-            color: var(--accent);\
-        \}\
-\
-        .consent-group \{\
-            display: flex;\
-            align-items: flex-start;\
-            margin: var(--spacing-lg) 0;\
-            padding: var(--spacing-md);\
-            background: rgba(0, 212, 255, 0.03);\
-            border-radius: clamp(6px, 1.5vw, 8px);\
-            border: 1px solid rgba(0, 212, 255, 0.08);\
-        \}\
-\
-        .consent-group input[type="checkbox"] \{\
-            margin-right: var(--spacing-sm);\
-            margin-top: 2px;\
-            width: 16px;\
-            height: 16px;\
-            accent-color: var(--accent);\
-            cursor: pointer;\
-            flex-shrink: 0;\
-        \}\
-\
-        .consent-group label \{\
-            font-size: var(--fs-sm);\
-            color: var(--text-secondary);\
-            cursor: pointer;\
-            line-height: 1.4;\
-            margin-bottom: 0;\
-        \}\
-\
-        .submit-button \{\
-            width: 100%;\
-            padding: var(--spacing-md) var(--spacing-lg);\
-            font-size: var(--fs-base);\
-            margin-top: var(--spacing-sm);\
-            background: var(--accent);\
-            color: white;\
-            font-weight: 600;\
-        \}\
-\
-        .submit-button:hover \{\
-            background: #00B8E6;\
-        \}\
-\
-        /* Loading state responsive */\
-        .loading \{\
-            display: none;\
-            text-align: center;\
-            padding: var(--spacing-2xl);\
-        \}\
-\
-        .loading.active \{\
-            display: block;\
-        \}\
-\
-        .loading p \{\
-            font-size: var(--fs-base);\
-        \}\
-\
-        .spinner \{\
-            width: 48px;\
-            height: 48px;\
-            border: 3px solid rgba(0, 212, 255, 0.1);\
-            border-top-color: var(--accent);\
-            border-radius: 50%;\
-            animation: spin 1s linear infinite;\
-            margin: 0 auto var(--spacing-lg);\
-        \}\
-\
-        @keyframes spin \{\
-            to \{ transform: rotate(360deg); \}\
-        \}\
-\
-        /* Success message responsive */\
-        .success-message \{\
-            display: none;\
-            text-align: center;\
-            padding: var(--spacing-2xl);\
-        \}\
-\
-        .success-message.active \{\
-            display: block;\
-            animation: fadeIn 0.5s ease-out;\
-        \}\
-\
-        .success-message h2 \{\
-            font-size: var(--fs-2xl);\
-            margin-bottom: var(--spacing-md);\
-        \}\
-\
-        .success-message p \{\
-            font-size: var(--fs-base);\
-            margin-bottom: var(--spacing-sm);\
-        \}\
-\
-        .success-icon \{\
-            font-size: 3em;\
-            color: var(--success);\
-            margin-bottom: var(--spacing-lg);\
-        \}\
-\
-        /* Address autocomplete responsive */\
-        .address-suggestions \{\
-            position: absolute;\
-            top: 100%;\
-            left: 0;\
-            right: 0;\
-            background: rgba(20, 27, 45, 0.98);\
-            border: 1px solid var(--border-color);\
-            border-radius: clamp(6px, 1.5vw, 8px);\
-            margin-top: 4px;\
-            max-height: 200px;\
-            overflow-y: auto;\
-            display: none;\
-            z-index: 10;\
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);\
-        \}\
-\
-        .address-suggestions.active \{\
-            display: block;\
-        \}\
-\
-        .address-suggestion \{\
-            padding: var(--spacing-sm) var(--spacing-md);\
-            cursor: pointer;\
-            transition: var(--transition);\
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);\
-            font-size: var(--fs-base);\
-        \}\
-\
-        .address-suggestion:last-child \{\
-            border-bottom: none;\
-        \}\
-\
-        .address-suggestion:hover \{\
-            background: rgba(0, 212, 255, 0.08);\
-            color: var(--accent);\
-        \}\
-\
-        /* Tooltips responsive */\
-        .tooltip \{\
-            position: relative;\
-            display: inline-block;\
-            cursor: help;\
-            margin-left: 4px;\
-        \}\
-\
-        .tooltip .tooltiptext \{\
-            visibility: hidden;\
-            width: min(250px, 80vw);\
-            background-color: rgba(20, 27, 45, 0.98);\
-            color: var(--text-secondary);\
-            text-align: left;\
-            border-radius: 6px;\
-            padding: var(--spacing-sm);\
-            position: absolute;\
-            z-index: 1;\
-            bottom: 125%;\
-            left: 50%;\
-            margin-left: -125px;\
-            opacity: 0;\
-            transition: opacity 0.3s;\
-            font-size: var(--fs-xs);\
-            line-height: 1.4;\
-            border: 1px solid rgba(255, 255, 255, 0.08);\
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\
-        \}\
-\
-        .tooltip:hover .tooltiptext \{\
-            visibility: visible;\
-            opacity: 1;\
-        \}\
-\
-        /* Metric highlights */\
-        .metric \{\
-            display: inline-block;\
-            background: rgba(0, 212, 255, 0.1);\
-            padding: var(--spacing-xs) var(--spacing-sm);\
-            border-radius: 20px;\
-            font-weight: 600;\
-            color: var(--accent);\
-            margin: 0 4px;\
-            font-size: var(--fs-sm);\
-        \}\
-\
-        /* Tablet specific styles */\
-        @media (max-width: 768px) \{\
-            .calculator-container \{\
-                padding: var(--spacing-lg) var(--spacing-md);\
-                border-radius: 12px;\
-            \}\
-\
-            .form-navigation \{\
-                gap: var(--spacing-sm);\
-            \}\
-\
-            .button \{\
-                flex: 1;\
-                min-width: 120px;\
-            \}\
-\
-            .type-option \{\
-                padding: var(--spacing-md);\
-            \}\
-\
-            .main-savings \{\
-                padding: var(--spacing-lg);\
-            \}\
-\
-            .benefit-card \{\
-                padding: var(--spacing-md);\
-            \}\
-\
-            .radio-option label \{\
-                flex-direction: column;\
-                align-items: flex-start;\
-            \}\
-\
-            .radio-option input[type="number"] \{\
-                width: 100%;\
-                margin-top: var(--spacing-sm);\
-            \}\
-\
-            .tooltip .tooltiptext \{\
-                bottom: auto;\
-                top: 125%;\
-                left: -125px;\
-                margin-left: 0;\
-            \}\
-        \}\
-\
-        /* Mobile specific styles */\
-        @media (max-width: 480px) \{\
-            body \{\
-                padding: var(--spacing-sm);\
-                align-items: flex-start;\
-                padding-top: var(--spacing-lg);\
-            \}\
-\
-            .calculator-container \{\
-                min-height: 100vh;\
-                border-radius: 8px;\
-                padding: var(--spacing-md);\
-            \}\
-\
-            .calculator-type-selector \{\
-                grid-template-columns: 1fr;\
-            \}\
-\
-            .form-navigation \{\
-                flex-direction: column-reverse;\
-            \}\
-\
-            .button \{\
-                width: 100%;\
-                min-width: auto;\
-            \}\
-\
-            .form-row \{\
-                grid-template-columns: 1fr;\
-            \}\
-\
-            .additional-benefits \{\
-                grid-template-columns: 1fr;\
-            \}\
-\
-            .progress-dots \{\
-                max-width: 100%;\
-                padding: 0 var(--spacing-sm);\
-            \}\
-\
-            .teaser-message ul \{\
-                padding-left: var(--spacing-lg);\
-            \}\
-\
-            .main-savings h2 \{\
-                font-size: var(--fs-lg);\
-            \}\
-\
-            .address-suggestions \{\
-                max-height: 150px;\
-            \}\
-\
-            .tooltip .tooltiptext \{\
-                width: calc(100vw - 40px);\
-                left: 50%;\
-                transform: translateX(-50%);\
-                margin-left: 0;\
-            \}\
-        \}\
-\
-        /* Landscape mobile */\
-        @media (max-height: 600px) and (orientation: landscape) \{\
-            body \{\
-                padding: var(--spacing-sm);\
-            \}\
-\
-            .calculator-container \{\
-                max-height: 95vh;\
-                overflow-y: auto;\
-                -webkit-overflow-scrolling: touch;\
-            \}\
-\
-            .calculator-header \{\
-                margin-bottom: var(--spacing-lg);\
-            \}\
-\
-            .main-savings \{\
-                padding: var(--spacing-md);\
-            \}\
-        \}\
-\
-        /* Print styles */\
-        @media print \{\
-            .button \{\
-                display: none;\
-            \}\
-\
-            .progress-bar,\
-            .form-navigation,\
-            .calculator-cta \{\
-                display: none;\
-            \}\
-        \}\
-\
-        /* High resolution screens */\
-        @media (min-resolution: 2dppx) \{\
-            .calculator-container \{\
-                border-width: 0.5px;\
-            \}\
-\
-            .progress-bar \{\
-                height: 1px;\
-            \}\
-        \}\
-\
-\
-\
-        /* Reduced motion */\
-        @media (prefers-reduced-motion: reduce) \{\
-            *,\
-            *::before,\
-            *::after \{\
-                animation-duration: 0.01ms !important;\
-                animation-iteration-count: 1 !important;\
-                transition-duration: 0.01ms !important;\
-            \}\
-        \}\
-\
-        /* Touch device optimizations */\
-        @media (hover: none) and (pointer: coarse) \{\
-            .button,\
-            .type-option,\
-            .radio-option,\
-            .progress-dot \{\
-                min-height: 44px;\
-                min-width: 44px;\
-            \}\
-\
-            input[type="checkbox"],\
-            input[type="radio"] \{\
-                min-width: 20px;\
-                min-height: 20px;\
-            \}\
-        \}\
-\
-        /* Very small devices */\
-        @media (max-width: 320px) \{\
-            :root \{\
-                --fs-base: 0.875rem;\
-                --fs-3xl: 1.5rem;\
-                --fs-4xl: 2rem;\
-            \}\
-\
-            .calculator-header h1 \{\
-                word-break: break-word;\
-                hyphens: auto;\
-            \}\
-\
-            .savings-amount \{\
-                word-break: break-all;\
-            \}\
-        \}\
-    </style>\
-</head>\
-<body>\
-    <div class="calculator-container">\
-        <!-- Header -->\
-        <div class="calculator-header">\
-            <h1>R\'e9duisez votre facture d'eau gr\'e2ce \'e0 la t\'e9l\'e9rel\'e8ve intelligente</h1>\
-            <p>Willie automatise vos relev\'e9s de compteurs, d\'e9tecte les fuites en temps r\'e9el et optimise votre consommation. D\'e9couvrez vos \'e9conomies potentielles en moins de 2 minutes avec notre simulateur gratuit.</p>\
-        </div>\
-\
-        <!-- Progress bar -->\
-        <div class="progress-bar">\
-            <div class="progress-fill" style="width: 20%;"></div>\
-        </div>\
-\
-        <!-- Type selector -->\
-        <div class="calculator-type-selector" id="typeSelector">\
-            <div class="type-option" data-type="simplified">\
-                <h3><span class="icon">\uc0\u9889 </span> Calcul rapide</h3>\
-                <p>Estimation globale en 2 minutes</p>\
-                <small>Id\'e9al pour une premi\'e8re approche</small>\
-            </div>\
-            <div class="type-option" data-type="detailed">\
-                <h3><span class="icon">\uc0\u55356 \u57263 </span> Calcul d\'e9taill\'e9</h3>\
-                <p>R\'e9sultats pr\'e9cis par site en 5 minutes</p>\
-                <small>Pour une analyse approfondie</small>\
-            </div>\
-        </div>\
-\
-        <!-- Simplified form -->\
-        <div class="calculator-form" id="simplifiedForm">\
-            <div class="form-step active">\
-                <h2>Informations g\'e9n\'e9rales</h2>\
-                \
-                <div class="form-group">\
-                    <label for="nbSites">Nombre de sites</label>\
-                    <input type="number" id="nbSites" min="1" value="1" required>\
-                </div>\
-\
-                <div class="form-group">\
-                    <label for="nbCompteurs">Nombre total de compteurs</label>\
-                    <input type="number" id="nbCompteurs" min="1" required>\
-                </div>\
-\
-                <div class="form-group">\
-                    <label>Consommation annuelle d'eau</label>\
-                    <div class="radio-group">\
-                        <div class="radio-option">\
-                            <input type="radio" id="consoGlobale" name="consoType" value="global" checked>\
-                            <label for="consoGlobale">\
-                                Consommation globale tous sites : \
-                                <input type="number" id="consoGlobaleValue" placeholder="m\'b3/an" style="width: 150px; margin-left: 10px;">\
-                            </label>\
-                        </div>\
-                        <div class="radio-option">\
-                            <input type="radio" id="consoMoyenne" name="consoType" value="average">\
-                            <label for="consoMoyenne">\
-                                Consommation moyenne par site : \
-                                <input type="number" id="consoMoyenneValue" placeholder="m\'b3/an" style="width: 150px; margin-left: 10px;">\
-                            </label>\
-                        </div>\
-                    </div>\
-                </div>\
-\
-                <div class="form-navigation">\
-                    <button class="button secondary" onclick="resetCalculator()">Retour</button>\
-                    <button class="button" onclick="calculateSimplified()">Calculer mes \'e9conomies</button>\
-                </div>\
-            </div>\
-        </div>\
-\
-        <!-- Detailed form -->\
-        <div class="calculator-form" id="detailedForm">\
-            <div class="form-step active" id="step1">\
-                <h2>Nombre de sites \'e0 analyser</h2>\
-                \
-                <div class="form-group">\
-                    <label for="nbSitesDetailed">Combien de sites souhaitez-vous analyser ?</label>\
-                    <input type="number" id="nbSitesDetailed" min="1" max="50" value="1" required>\
-                </div>\
-\
-                <div class="form-navigation">\
-                    <button class="button secondary" onclick="resetCalculator()">Retour</button>\
-                    <button class="button" onclick="setupSites()">Suivant</button>\
-                </div>\
-            </div>\
-\
-            <div class="form-step" id="step2">\
-                <h2>Site <span id="currentSiteNumber">1</span> sur <span id="totalSitesNumber">1</span></h2>\
-                \
-                <div class="site-form">\
-                    <div class="form-group">\
-                        <label for="siteName">Nom du site</label>\
-                        <input type="text" id="siteName" placeholder="Ex: Si\'e8ge social" required>\
-                    </div>\
-                    \
-                    <div class="form-group">\
-                        <label for="siteAddress">\
-                            Adresse du site\
-                            <span class="tooltip">\
-                                <span style="font-size: 0.8em; color: var(--accent);">\uc0\u8505 </span>\
-                                <span class="tooltiptext">L'adresse nous permet de d\'e9terminer pr\'e9cis\'e9ment le co\'fbt de l'eau dans votre commune pour un calcul plus pr\'e9cis</span>\
-                            </span>\
-                        </label>\
-                        <input type="text" id="siteAddress" placeholder="Commencez \'e0 taper l'adresse..." required autocomplete="street-address">\
-                        <div class="address-suggestions" id="addressSuggestions"></div>\
-                    </div>\
-\
-                    <div class="form-group">\
-                        <label for="siteMeters">Nombre de compteurs d'eau</label>\
-                        <input type="number" id="siteMeters" min="1" placeholder="Ex: 5" required>\
-                    </div>\
-\
-                    <div class="form-group">\
-                        <label for="siteConsumption">Consommation annuelle 2024 (m\'b3)</label>\
-                        <input type="number" id="siteConsumption" min="0" placeholder="Ex: 5000" required>\
-                    </div>\
-                </div>\
-\
-                <div class="site-navigation">\
-                    <div class="site-progress">\
-                        <div class="progress-dots">\
-                            <!-- Dots will be generated dynamically -->\
-                        </div>\
-                    </div>\
-                </div>\
-\
-                <div class="form-navigation">\
-                    <button class="button secondary" onclick="navigateSite('prev')">\uc0\u8592  Retour</button>\
-                    <button class="button" id="nextSiteBtn" onclick="navigateSite('next')">Suivant \uc0\u8594 </button>\
-                </div>\
-            </div>\
-        </div>\
-\
-        <!-- Loading state -->\
-        <div class="loading" id="loading">\
-            <div class="spinner"></div>\
-            <p>Calcul de vos \'e9conomies en cours...</p>\
-        </div>\
-\
-        <!-- Results -->\
-        <div class="calculator-results" id="results">\
-            <div style="text-align: left; margin-bottom: var(--spacing-xl);">\
-                <button class="button secondary" onclick="backToForm()">\uc0\u8592  Modifier mes donn\'e9es</button>\
-            </div>\
-            \
-            <div class="main-savings">\
-                <h2>\uc0\u55357 \u56496  VOS \'c9CONOMIES POTENTIELLES D\'c9TECT\'c9ES</h2>\
-                <div class="savings-amount">\
-                    <span class="counter" id="totalSavings">0</span> \'80/an\
-                </div>\
-                <p>\'c9conomies annuelles estim\'e9es</p>\
-                <div class="teaser-message">\
-                    <p style="color: var(--accent); font-size: var(--fs-lg); margin-bottom: var(--spacing-lg);">\
-                        \uc0\u55357 \u56594  D\'e9bloquez votre rapport complet pour d\'e9couvrir :\
-                    </p>\
-                    <ul style="text-align: left; display: inline-block; color: var(--text-secondary);">\
-                        <li>\uc0\u55357 \u56522  Le d\'e9tail pr\'e9cis de vos \'e9conomies d'eau</li>\
-                        <li>\uc0\u9201 \u65039  Les heures de productivit\'e9 gagn\'e9es</li>\
-                        <li>\uc0\u55357 \u56520  Votre projection sur 5 ans</li>\
-                        <li>\uc0\u55357 \u57057 \u65039  Votre protection contre les amendes CSRD</li>\
-                        <li>\uc0\u55356 \u57151  L'impact sur votre score ESG</li>\
-                    </ul>\
-                </div>\
-            </div>\
-\
-            <div class="additional-benefits">\
-                <div class="benefit-card">\
-                    <span class="icon">\uc0\u55357 \u57057 \u65039 </span>\
-                    <h4>Risques \'e9vit\'e9s</h4>\
-                    <p>Amendes CSRD/DPEF jusqu'\'e0 3,75M\'80<br>\uc0\u10003  Reporting automatis\'e9</p>\
-                </div>\
-                <div class="benefit-card">\
-                    <span class="icon">\uc0\u55356 \u57151 </span>\
-                    <h4>Impact RSE</h4>\
-                    <p>Score ESG am\'e9lior\'e9<br>+15% notation extra-financi\'e8re</p>\
-                </div>\
-                <div class="benefit-card">\
-                    <span class="icon">\uc0\u55357 \u56615 </span>\
-                    <h4>Maintenance optimis\'e9e</h4>\
-                    <p>-95% d\'e9lai intervention fuites<br>Jusqu'\'e0 120k\'80/fuite \'e9vit\'e9e</p>\
-                </div>\
-            </div>\
-\
-            <div class="calculator-cta">\
-                <h3>\uc0\u55357 \u56595  D\'e9bloquez votre rapport d\'e9taill\'e9 personnalis\'e9</h3>\
-                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">\
-                    Recevez imm\'e9diatement votre analyse compl\'e8te avec toutes vos \'e9conomies d\'e9taill\'e9es\
-                </p>\
-                <form class="elegant-form" id="emailForm">\
-                    <div class="form-row">\
-                        <div class="form-field">\
-                            <input type="text" id="firstName" required>\
-                            <label for="firstName">Pr\'e9nom</label>\
-                        </div>\
-                        <div class="form-field">\
-                            <input type="text" id="lastName" required>\
-                            <label for="lastName">Nom</label>\
-                        </div>\
-                    </div>\
-                    <div class="form-field">\
-                        <input type="email" id="email" required>\
-                        <label for="email">Email professionnel</label>\
-                    </div>\
-                    <div class="form-field">\
-                        <input type="tel" id="phone">\
-                        <label for="phone">T\'e9l\'e9phone (optionnel)</label>\
-                    </div>\
-                    \
-                    <div class="consent-group">\
-                        <input type="checkbox" id="consent" checked>\
-                        <label for="consent">J'accepte de recevoir mon rapport personnalis\'e9 et d'\'eatre contact\'e9 par un expert Willie</label>\
-                    </div>\
-                    \
-                    <button type="button" class="button submit-button" onclick="submitEmail()">\
-                        Recevoir mon rapport d\'e9taill\'e9 \uc0\u8594 \
-                    </button>\
-                </form>\
-            </div>\
-        </div>\
-\
-        <!-- Success message -->\
-        <div class="success-message" id="successMessage">\
-            <div class="success-icon">\uc0\u9989 </div>\
-            <h2>Parfait !</h2>\
-            <p>Votre rapport personnalis\'e9 a \'e9t\'e9 envoy\'e9 \'e0 votre adresse email.</p>\
-            <p>Un expert Willie va vous contacter dans les 24h pour discuter de vos besoins.</p>\
-        </div>\
-    </div>\
-\
-    <script>\
-        // Configuration\
-        const config = \{\
-            waterPricePerM3: 4.50,\
-            reductionRate: 0.22,\
-            timePerMeter: 0.25,\
-            hourlyRate: 22,\
-            inflationRate: 0.05\
-        \};\
-\
-        // State\
-        let currentType = null;\
-        let currentStep = 1;\
-        let currentSiteIndex = 0;\
-        let totalSites = 1;\
-        let sitesData = [];\
-        let results = \{\};\
-        let formData = \{\}; // Store form data for navigation\
-\
-        // Address suggestions (simulated - replace with real API)\
-        const addressSuggestions = [\
-            "1 Rue de la Paix, 75002 Paris",\
-            "10 Avenue des Champs-\'c9lys\'e9es, 75008 Paris", \
-            "25 Boulevard Saint-Germain, 75005 Paris",\
-            "15 Rue de Rivoli, 75001 Paris",\
-            "50 Avenue Montaigne, 75008 Paris"\
-        ];\
-\
-        // Save form data\
-        function saveFormData() \{\
-            if (currentType === 'simplified') \{\
-                formData.simplified = \{\
-                    nbSites: document.getElementById('nbSites').value,\
-                    nbCompteurs: document.getElementById('nbCompteurs').value,\
-                    consoType: document.querySelector('input[name="consoType"]:checked')?.value,\
-                    consoGlobaleValue: document.getElementById('consoGlobaleValue').value,\
-                    consoMoyenneValue: document.getElementById('consoMoyenneValue').value\
-                \};\
-            \}\
-        \}\
-\
-        // Save current site data\
-        function saveCurrentSiteData() \{\
-            const siteData = \{\
-                name: document.getElementById('siteName').value,\
-                address: document.getElementById('siteAddress').value,\
-                meters: document.getElementById('siteMeters').value,\
-                consumption: document.getElementById('siteConsumption').value\
-            \};\
-            \
-            sitesData[currentSiteIndex] = siteData;\
-        \}\
-\
-        // Restore form data\
-        function restoreFormData() \{\
-            if (currentType === 'simplified' && formData.simplified) \{\
-                const data = formData.simplified;\
-                document.getElementById('nbSites').value = data.nbSites || 1;\
-                document.getElementById('nbCompteurs').value = data.nbCompteurs || '';\
-                if (data.consoType) \{\
-                    document.querySelector(`input[name="consoType"][value="$\{data.consoType\}"]`).checked = true;\
-                    document.getElementById('consoGlobaleValue').disabled = data.consoType !== 'global';\
-                    document.getElementById('consoMoyenneValue').disabled = data.consoType !== 'average';\
-                \}\
-                document.getElementById('consoGlobaleValue').value = data.consoGlobaleValue || '';\
-                document.getElementById('consoMoyenneValue').value = data.consoMoyenneValue || '';\
-            \}\
-        \}\
-\
-        // GTM tracking\
-        function trackEvent(eventName, parameters = \{\}) \{\
-            if (typeof gtag !== 'undefined') \{\
-                gtag('event', eventName, parameters);\
-            \}\
-            console.log('Track event:', eventName, parameters);\
-        \}\
-\
-        // Initialize\
-        document.addEventListener('DOMContentLoaded', function() \{\
-            // Type selector events\
-            document.querySelectorAll('.type-option').forEach(option => \{\
-                option.addEventListener('click', function() \{\
-                    selectCalculatorType(this.dataset.type);\
-                \});\
-            \});\
-\
-            // Radio button events\
-            document.querySelectorAll('input[name="consoType"]').forEach(radio => \{\
-                radio.addEventListener('change', function() \{\
-                    document.getElementById('consoGlobaleValue').disabled = this.value !== 'global';\
-                    document.getElementById('consoMoyenneValue').disabled = this.value !== 'average';\
-                \});\
-            \});\
-\
-            // Initial state\
-            document.getElementById('consoMoyenneValue').disabled = true;\
-\
-            // Address autocomplete\
-            const addressInput = document.getElementById('siteAddress');\
-            if (addressInput) \{\
-                addressInput.addEventListener('input', handleAddressInput);\
-                addressInput.addEventListener('blur', () => \{\
-                    setTimeout(() => \{\
-                        document.getElementById('addressSuggestions').classList.remove('active');\
-                    \}, 200);\
-                \});\
-            \}\
-\
-            // Handle touch events for better mobile experience\
-            if ('ontouchstart' in window) \{\
-                document.querySelectorAll('.button, .type-option, .radio-option').forEach(el => \{\
-                    el.addEventListener('touchstart', function() \{\
-                        this.style.opacity = '0.8';\
-                    \});\
-                    el.addEventListener('touchend', function() \{\
-                        this.style.opacity = '1';\
-                    \});\
-                \});\
-            \}\
-        \});\
-\
-        // Handle address input\
-        function handleAddressInput(e) \{\
-            const value = e.target.value;\
-            const suggestionsDiv = document.getElementById('addressSuggestions');\
-            \
-            if (value.length > 2) \{\
-                // Filter suggestions (in real app, this would be an API call)\
-                const filtered = addressSuggestions.filter(addr => \
-                    addr.toLowerCase().includes(value.toLowerCase())\
-                );\
-                \
-                if (filtered.length > 0) \{\
-                    suggestionsDiv.innerHTML = filtered.map(addr => \
-                        `<div class="address-suggestion" onclick="selectAddress('$\{addr\}')">$\{addr\}</div>`\
-                    ).join('');\
-                    suggestionsDiv.classList.add('active');\
-                \} else \{\
-                    suggestionsDiv.classList.remove('active');\
-                \}\
-            \} else \{\
-                suggestionsDiv.classList.remove('active');\
-            \}\
-        \}\
-\
-        // Select address\
-        function selectAddress(address) \{\
-            document.getElementById('siteAddress').value = address;\
-            document.getElementById('addressSuggestions').classList.remove('active');\
-        \}\
-\
-        // Calculator type selection\
-        function selectCalculatorType(type) \{\
-            currentType = type;\
-            \
-            // Track selection\
-            trackEvent('calculator_type_selected', \{\
-                'calculator_type': type\
-            \});\
-\
-            // Update UI\
-            document.querySelectorAll('.type-option').forEach(option => \{\
-                option.classList.remove('selected');\
-            \});\
-            document.querySelector(`[data-type="$\{type\}"]`).classList.add('selected');\
-\
-            // Hide type selector\
-            document.getElementById('typeSelector').style.display = 'none';\
-\
-            // Show appropriate form\
-            if (type === 'simplified') \{\
-                document.getElementById('simplifiedForm').classList.add('active');\
-                setTimeout(restoreFormData, 100); // Restore saved data\
-            \} else \{\
-                document.getElementById('detailedForm').classList.add('active');\
-            \}\
-\
-            // Update progress\
-            updateProgress(40);\
-        \}\
-\
-        // Back to form from results\
-        function backToForm() \{\
-            document.getElementById('results').classList.remove('active');\
-            \
-            if (currentType === 'simplified') \{\
-                document.getElementById('simplifiedForm').classList.add('active');\
-                restoreFormData();\
-            \} else \{\
-                document.getElementById('detailedForm').classList.add('active');\
-                showStep('step2');\
-            \}\
-            \
-            updateProgress(70);\
-        \}\
-\
-        // Progress bar\
-        function updateProgress(percentage) \{\
-            document.querySelector('.progress-fill').style.width = percentage + '%';\
-        \}\
-\
-        // Reset calculator\
-        function resetCalculator() \{\
-            // Reset state\
-            currentType = null;\
-            currentSiteIndex = 0;\
-            sitesData = [];\
-            \
-            // Hide all forms\
-            document.querySelectorAll('.calculator-form').forEach(form => \{\
-                form.classList.remove('active');\
-            \});\
-            \
-            // Hide results and loading\
-            document.getElementById('results').classList.remove('active');\
-            document.getElementById('loading').classList.remove('active');\
-            \
-            // Show type selector\
-            document.getElementById('typeSelector').style.display = 'grid';\
-            \
-            // Reset progress\
-            updateProgress(20);\
-        \}\
-\
-        // Simplified calculation\
-        function calculateSimplified() \{\
-            const nbSites = parseInt(document.getElementById('nbSites').value);\
-            const nbCompteurs = parseInt(document.getElementById('nbCompteurs').value);\
-            const consoType = document.querySelector('input[name="consoType"]:checked').value;\
-            \
-            let totalConsumption;\
-            if (consoType === 'global') \{\
-                totalConsumption = parseFloat(document.getElementById('consoGlobaleValue').value);\
-            \} else \{\
-                const avgConsumption = parseFloat(document.getElementById('consoMoyenneValue').value);\
-                totalConsumption = avgConsumption * nbSites;\
-            \}\
-\
-            if (!nbSites || !nbCompteurs || !totalConsumption) \{\
-                alert('Veuillez remplir tous les champs');\
-                return;\
-            \}\
-\
-            // Save form data before calculating\
-            saveFormData();\
-\
-            // Track values\
-            trackEvent('calculator_values_entered', \{\
-                'sites_count': nbSites <= 5 ? 'low' : nbSites <= 20 ? 'medium' : 'high',\
-                'meters_count': nbCompteurs <= 50 ? 'low' : nbCompteurs <= 200 ? 'medium' : 'high',\
-                'consumption_range': totalConsumption <= 10000 ? 'low' : totalConsumption <= 50000 ? 'medium' : 'high'\
-            \});\
-\
-            // Show loading\
-            document.getElementById('simplifiedForm').classList.remove('active');\
-            document.getElementById('loading').classList.add('active');\
-            updateProgress(70);\
-\
-            // Calculate results\
-            setTimeout(() => \{\
-                calculateResults(\{\
-                    sites: nbSites,\
-                    meters: nbCompteurs,\
-                    consumption: totalConsumption\
-                \});\
-            \}, 1500);\
-        \}\
-\
-        // Setup sites for detailed form\
-        function setupSites() \{\
-            const nbSites = parseInt(document.getElementById('nbSitesDetailed').value);\
-            \
-            if (!nbSites || nbSites < 1) \{\
-                alert('Veuillez entrer un nombre de sites valide');\
-                return;\
-            \}\
-\
-            // Initialize sites data array\
-            totalSites = nbSites;\
-            sitesData = new Array(nbSites).fill(null).map(() => (\{\}));\
-            currentSiteIndex = 0;\
-\
-            // Update UI\
-            updateSiteUI();\
-            \
-            // Show step 2\
-            showStep('step2');\
-            updateProgress(60);\
-        \}\
-\
-        // Update site UI\
-        function updateSiteUI() \{\
-            // Update site counter\
-            document.getElementById('currentSiteNumber').textContent = currentSiteIndex + 1;\
-            document.getElementById('totalSitesNumber').textContent = totalSites;\
-\
-            // Update progress dots\
-            const dotsContainer = document.querySelector('.progress-dots');\
-            dotsContainer.innerHTML = '';\
-            \
-            for (let i = 0; i < totalSites; i++) \{\
-                const dot = document.createElement('div');\
-                dot.className = 'progress-dot';\
-                if (i === currentSiteIndex) \{\
-                    dot.classList.add('active');\
-                \} else if (sitesData[i] && sitesData[i].name) \{\
-                    dot.classList.add('completed');\
-                \}\
-                dot.onclick = () => goToSite(i);\
-                dotsContainer.appendChild(dot);\
-            \}\
-\
-            // Load site data if exists\
-            if (sitesData[currentSiteIndex]) \{\
-                const data = sitesData[currentSiteIndex];\
-                document.getElementById('siteName').value = data.name || '';\
-                document.getElementById('siteAddress').value = data.address || '';\
-                document.getElementById('siteMeters').value = data.meters || '';\
-                document.getElementById('siteConsumption').value = data.consumption || '';\
-            \} else \{\
-                // Clear form\
-                document.getElementById('siteName').value = '';\
-                document.getElementById('siteAddress').value = '';\
-                document.getElementById('siteMeters').value = '';\
-                document.getElementById('siteConsumption').value = '';\
-            \}\
-\
-            // Update navigation buttons\
-            const nextBtn = document.getElementById('nextSiteBtn');\
-            if (currentSiteIndex === totalSites - 1) \{\
-                nextBtn.textContent = 'Calculer mes \'e9conomies \uc0\u8594 ';\
-                nextBtn.onclick = () => calculateDetailed();\
-            \} else \{\
-                nextBtn.textContent = 'Suivant \uc0\u8594 ';\
-                nextBtn.onclick = () => navigateSite('next');\
-            \}\
-        \}\
-\
-        // Navigate between sites\
-        function navigateSite(direction) \{\
-            // Save current site data\
-            saveCurrentSiteData();\
-\
-            if (direction === 'next') \{\
-                if (validateCurrentSite()) \{\
-                    if (currentSiteIndex < totalSites - 1) \{\
-                        currentSiteIndex++;\
-                        updateSiteUI();\
-                    \}\
-                \}\
-            \} else if (direction === 'prev') \{\
-                if (currentSiteIndex > 0) \{\
-                    currentSiteIndex--;\
-                    updateSiteUI();\
-                \} else \{\
-                    showStep('step1');\
-                \}\
-            \}\
-        \}\
-\
-        // Go to specific site\
-        function goToSite(index) \{\
-            saveCurrentSiteData();\
-            currentSiteIndex = index;\
-            updateSiteUI();\
-        \}\
-\
-        // Validate current site\
-        function validateCurrentSite() \{\
-            const name = document.getElementById('siteName').value;\
-            const address = document.getElementById('siteAddress').value;\
-            const meters = document.getElementById('siteMeters').value;\
-            const consumption = document.getElementById('siteConsumption').value;\
-\
-            if (!name || !address || !meters || !consumption) \{\
-                alert('Veuillez remplir tous les champs pour ce site');\
-                return false;\
-            \}\
-            return true;\
-        \}\
-\
-        // Show step\
-        function showStep(stepId) \{\
-            document.querySelectorAll('.form-step').forEach(step => \{\
-                step.classList.remove('active');\
-            \});\
-            document.getElementById(stepId).classList.add('active');\
-        \}\
-\
-        // Detailed calculation\
-        function calculateDetailed() \{\
-            // Save current site data\
-            saveCurrentSiteData();\
-\
-            // Validate all sites\
-            let allValid = true;\
-            let totalMeters = 0;\
-            let totalConsumption = 0;\
-\
-            for (let i = 0; i < totalSites; i++) \{\
-                if (!sitesData[i] || !sitesData[i].name || !sitesData[i].meters || !sitesData[i].consumption) \{\
-                    allValid = false;\
-                    alert(`Veuillez compl\'e9ter les informations du site $\{i + 1\}`);\
-                    currentSiteIndex = i;\
-                    updateSiteUI();\
-                    return;\
-                \}\
-                totalMeters += parseInt(sitesData[i].meters);\
-                totalConsumption += parseFloat(sitesData[i].consumption);\
-            \}\
-\
-            // Track values\
-            trackEvent('calculator_values_entered', \{\
-                'sites_count': totalSites <= 5 ? 'low' : totalSites <= 20 ? 'medium' : 'high',\
-                'meters_count': totalMeters <= 50 ? 'low' : totalMeters <= 200 ? 'medium' : 'high',\
-                'consumption_range': totalConsumption <= 10000 ? 'low' : totalConsumption <= 50000 ? 'medium' : 'high'\
-            \});\
-\
-            // Show loading\
-            document.getElementById('detailedForm').classList.remove('active');\
-            document.getElementById('loading').classList.add('active');\
-            updateProgress(70);\
-\
-            // Calculate results\
-            setTimeout(() => \{\
-                calculateResults(\{\
-                    sites: totalSites,\
-                    meters: totalMeters,\
-                    consumption: totalConsumption,\
-                    detailed: sitesData\
-                \});\
-            \}, 1500);\
-        \}\
-\
-        // Calculate results\
-        function calculateResults(data) \{\
-            // Water savings\
-            const waterSaved = data.consumption * config.reductionRate;\
-            const waterSavingsEuros = waterSaved * config.waterPricePerM3;\
-\
-            // Time savings\
-            const timeSaved = data.meters * config.timePerMeter * 12; // Monthly reading\
-            const timeSavingsEuros = timeSaved * config.hourlyRate;\
-\
-            // Total annual savings\
-            const totalAnnualSavings = waterSavingsEuros + timeSavingsEuros;\
-\
-            // 5-year projection with inflation\
-            let fiveYearSavings = 0;\
-            for (let i = 0; i < 5; i++) \{\
-                fiveYearSavings += totalAnnualSavings * Math.pow(1 + config.inflationRate, i);\
-            \}\
-\
-            // Store results\
-            results = \{\
-                waterSaved: Math.round(waterSaved),\
-                waterSavingsEuros: Math.round(waterSavingsEuros),\
-                timeSaved: Math.round(timeSaved),\
-                timeSavingsEuros: Math.round(timeSavingsEuros),\
-                totalAnnualSavings: Math.round(totalAnnualSavings),\
-                fiveYearSavings: Math.round(fiveYearSavings)\
-            \};\
-\
-            // Track results\
-            trackEvent('calculator_results_viewed', \{\
-                'annual_savings': totalAnnualSavings <= 10000 ? 'low' : totalAnnualSavings <= 50000 ? 'medium' : 'high',\
-                'roi_years': 5\
-            \});\
-\
-            // Show results\
-            showResults();\
-        \}\
-\
-        // Show results\
-        function showResults() \{\
-            document.getElementById('loading').classList.remove('active');\
-            document.getElementById('results').classList.add('active');\
-            updateProgress(100);\
-\
-            // Animate counter for main savings only\
-            animateCounter('totalSavings', results.totalAnnualSavings);\
-            \
-            // Store detailed results for the email report\
-            // These will be sent to backend when email is submitted\
-            console.log('Full results stored for report:', results);\
-        \}\
-\
-        // Animate counter\
-        function animateCounter(elementId, target) \{\
-            const element = document.getElementById(elementId);\
-            const duration = 2000;\
-            const start = 0;\
-            const increment = target / (duration / 16);\
-            let current = start;\
-\
-            const timer = setInterval(() => \{\
-                current += increment;\
-                if (current >= target) \{\
-                    current = target;\
-                    clearInterval(timer);\
-                \}\
-                element.textContent = Math.round(current).toLocaleString();\
-            \}, 16);\
-        \}\
-\
-        // Submit email\
-        function submitEmail() \{\
-            const firstName = document.getElementById('firstName').value;\
-            const lastName = document.getElementById('lastName').value;\
-            const email = document.getElementById('email').value;\
-            const phone = document.getElementById('phone').value;\
-            const consent = document.getElementById('consent').checked;\
-\
-            // Validate required fields\
-            if (!firstName || !lastName || !email) \{\
-                alert('Veuillez remplir tous les champs obligatoires');\
-                return;\
-            \}\
-\
-            if (!consent) \{\
-                alert('Veuillez accepter de recevoir votre rapport personnalis\'e9');\
-                return;\
-            \}\
-\
-            // Collect form data\
-            const emailData = \{\
-                firstName: firstName,\
-                lastName: lastName,\
-                email: email,\
-                phone: phone,\
-                consent: true,\
-                calculationType: currentType,\
-                results: results,\
-                formData: currentType === 'simplified' ? formData : \{ sites: sitesData \}\
-            \};\
-\
-            // Track submission\
-            const leadScore = results.totalAnnualSavings > 50000 ? 'high' : \
-                           results.totalAnnualSavings > 20000 ? 'medium' : 'low';\
-            \
-            trackEvent('calculator_email_submitted', \{\
-                'lead_score': leadScore\
-            \});\
-\
-            // Show success\
-            document.getElementById('results').style.display = 'none';\
-            document.getElementById('successMessage').classList.add('active');\
-\
-            // Here you would normally send the data to your backend\
-            console.log('Form submitted with complete data:', emailData);\
-            \
-            // Example API call (uncomment and adapt for your backend):\
-            /*\
-            fetch('https://your-api-endpoint.com/calculator-lead', \{\
-                method: 'POST',\
-                headers: \{\
-                    'Content-Type': 'application/json',\
-                \},\
-                body: JSON.stringify(emailData)\
-            \})\
-            .then(response => response.json())\
-            .then(data => \{\
-                console.log('Success:', data);\
-            \})\
-            .catch((error) => \{\
-                console.error('Error:', error);\
-            \});\
-            */\
-        \}\
-\
-        // Viewport height fix for mobile browsers\
-        function setViewportHeight() \{\
-            const vh = window.innerHeight * 0.01;\
-            document.documentElement.style.setProperty('--vh', `$\{vh\}px`);\
-        \}\
-\
-        // Set viewport height on load and resize\
-        setViewportHeight();\
-        window.addEventListener('resize', setViewportHeight);\
-        window.addEventListener('orientationchange', setViewportHeight);\
-    </script>\
-</body>\
-</html>}
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-md);
+            font-size: var(--fs-base);
+            overflow-x: hidden;
+        }
+
+        /* Container principal responsive */
+        .calculator-container {
+            width: 100%;
+            max-width: min(800px, 95vw);
+            background: rgba(20, 27, 45, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: clamp(12px, 3vw, 16px);
+            border: 1px solid var(--border-color);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header responsive */
+        .calculator-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .calculator-header h1 {
+            font-size: var(--fs-3xl);
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, #FFFFFF 0%, #00D4FF 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .calculator-header p {
+            color: var(--text-secondary);
+            font-size: var(--fs-lg);
+            max-width: 100%;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Type selector responsive */
+        .calculator-type-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .type-option {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: clamp(8px, 2vw, 12px);
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .type-option:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .type-option.selected {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: var(--accent);
+        }
+
+        .type-option h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: var(--fs-lg);
+        }
+
+        .type-option .icon {
+            font-size: 1.3em;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .type-option p {
+            color: var(--text-secondary);
+            font-size: var(--fs-sm);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .type-option small {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: var(--fs-xs);
+        }
+
+        /* Form responsive */
+        .calculator-form {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .calculator-form.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-step h2 {
+            font-size: var(--fs-2xl);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Form controls responsive */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: var(--fs-sm);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: clamp(6px, 1.5vw, 8px);
+            color: var(--text-primary);
+            font-size: var(--fs-base);
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input:hover,
+        select:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.5);
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
+        }
+
+        /* Radio buttons responsive */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: clamp(6px, 1.5vw, 8px);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .radio-option:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: var(--spacing-sm);
+            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .radio-option label {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: 0;
+            font-size: var(--fs-sm);
+        }
+
+        .radio-option input[type="number"] {
+            width: 120px;
+            min-width: 100px;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            margin-top: var(--spacing-xs);
+        }
+
+        /* Buttons responsive */
+        .button {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: #FFFFFF;
+            border: none;
+            border-radius: clamp(6px, 1.5vw, 8px);
+            color: #0A0E1A;
+            font-size: var(--fs-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button.secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            box-shadow: none;
+        }
+
+        .button.secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Navigation responsive */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        /* Progress bar responsive */
+        .progress-bar {
+            height: 2px;
+            background: var(--border-color);
+            border-radius: 1px;
+            margin-bottom: var(--spacing-xl);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 1px;
+            transition: width 0.5s ease-out;
+        }
+
+        /* Site navigation responsive */
+        .site-navigation {
+            margin: var(--spacing-xl) 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 100%;
+        }
+
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .progress-dot.active {
+            background: #FFFFFF;
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-dot.completed {
+            background: var(--accent);
+        }
+
+        /* Results section responsive */
+        .calculator-results {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .calculator-results.active {
+            display: block;
+        }
+
+        .main-savings {
+            background: rgba(0, 212, 255, 0.05);
+            border: 2px solid var(--accent);
+            border-radius: clamp(12px, 3vw, 16px);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-savings::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .main-savings h2 {
+            font-size: var(--fs-xl);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .savings-amount {
+            font-size: var(--fs-4xl);
+            font-weight: 700;
+            color: var(--accent);
+            margin: var(--spacing-lg) 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .teaser-message {
+            position: relative;
+            z-index: 1;
+        }
+
+        .teaser-message p {
+            font-size: var(--fs-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .teaser-message ul {
+            text-align: left;
+            display: inline-block;
+            max-width: 100%;
+            font-size: var(--fs-base);
+        }
+
+        .teaser-message li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Benefit cards responsive */
+        .additional-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: clamp(8px, 2vw, 12px);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-card .icon {
+            font-size: 2em;
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .benefit-card h4 {
+            color: var(--accent);
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--fs-lg);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            font-size: var(--fs-sm);
+        }
+
+        /* Email capture responsive */
+        .calculator-cta {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: clamp(8px, 2vw, 12px);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+
+        .calculator-cta h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: var(--fs-xl);
+        }
+
+        .calculator-cta p {
+            font-size: var(--fs-base);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Elegant form responsive */
+        .elegant-form {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: var(--spacing-lg);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-field {
+            position: relative;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: clamp(6px, 1.5vw, 8px);
+            color: var(--text-primary);
+            font-size: var(--fs-base);
+            transition: var(--transition);
+        }
+
+        .form-field label {
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: var(--fs-base);
+            pointer-events: none;
+            transition: var(--transition);
+            background: rgba(20, 27, 45, 0.95);
+            padding: 0 4px;
+        }
+
+        .form-field input:focus + label,
+        .form-field input:valid + label {
+            top: 0;
+            font-size: var(--fs-xs);
+            color: var(--accent);
+        }
+
+        .consent-group {
+            display: flex;
+            align-items: flex-start;
+            margin: var(--spacing-lg) 0;
+            padding: var(--spacing-md);
+            background: rgba(0, 212, 255, 0.03);
+            border-radius: clamp(6px, 1.5vw, 8px);
+            border: 1px solid rgba(0, 212, 255, 0.08);
+        }
+
+        .consent-group input[type="checkbox"] {
+            margin-right: var(--spacing-sm);
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .consent-group label {
+            font-size: var(--fs-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: var(--fs-base);
+            margin-top: var(--spacing-sm);
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+        }
+
+        .submit-button:hover {
+            background: #00B8E6;
+        }
+
+        /* Loading state responsive */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-2xl);
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .loading p {
+            font-size: var(--fs-base);
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(0, 212, 255, 0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success message responsive */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-2xl);
+        }
+
+        .success-message.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .success-message h2 {
+            font-size: var(--fs-2xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .success-message p {
+            font-size: var(--fs-base);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .success-icon {
+            font-size: 3em;
+            color: var(--success);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Address autocomplete responsive */
+        .address-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(20, 27, 45, 0.98);
+            border: 1px solid var(--border-color);
+            border-radius: clamp(6px, 1.5vw, 8px);
+            margin-top: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 10;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .address-suggestions.active {
+            display: block;
+        }
+
+        .address-suggestion {
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: var(--fs-base);
+        }
+
+        .address-suggestion:last-child {
+            border-bottom: none;
+        }
+
+        .address-suggestion:hover {
+            background: rgba(0, 212, 255, 0.08);
+            color: var(--accent);
+        }
+
+        /* Tooltips responsive */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            margin-left: 4px;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: min(250px, 80vw);
+            background-color: rgba(20, 27, 45, 0.98);
+            color: var(--text-secondary);
+            text-align: left;
+            border-radius: 6px;
+            padding: var(--spacing-sm);
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: var(--fs-xs);
+            line-height: 1.4;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Metric highlights */
+        .metric {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 4px;
+            font-size: var(--fs-sm);
+        }
+
+        /* Tablet specific styles */
+        @media (max-width: 768px) {
+            .calculator-container {
+                padding: var(--spacing-lg) var(--spacing-md);
+                border-radius: 12px;
+            }
+
+            .form-navigation {
+                gap: var(--spacing-sm);
+            }
+
+            .button {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .type-option {
+                padding: var(--spacing-md);
+            }
+
+            .main-savings {
+                padding: var(--spacing-lg);
+            }
+
+            .benefit-card {
+                padding: var(--spacing-md);
+            }
+
+            .radio-option label {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .radio-option input[type="number"] {
+                width: 100%;
+                margin-top: var(--spacing-sm);
+            }
+
+            .tooltip .tooltiptext {
+                bottom: auto;
+                top: 125%;
+                left: -125px;
+                margin-left: 0;
+            }
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 480px) {
+            body {
+                padding: var(--spacing-sm);
+                align-items: flex-start;
+                padding-top: var(--spacing-lg);
+            }
+
+            .calculator-container {
+                min-height: 100vh;
+                border-radius: 8px;
+                padding: var(--spacing-md);
+            }
+
+            .calculator-type-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .form-navigation {
+                flex-direction: column-reverse;
+            }
+
+            .button {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .additional-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-dots {
+                max-width: 100%;
+                padding: 0 var(--spacing-sm);
+            }
+
+            .teaser-message ul {
+                padding-left: var(--spacing-lg);
+            }
+
+            .main-savings h2 {
+                font-size: var(--fs-lg);
+            }
+
+            .address-suggestions {
+                max-height: 150px;
+            }
+
+            .tooltip .tooltiptext {
+                width: calc(100vw - 40px);
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: var(--spacing-sm);
+            }
+
+            .calculator-container {
+                max-height: 95vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .calculator-header {
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .main-savings {
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .button {
+                display: none;
+            }
+
+            .progress-bar,
+            .form-navigation,
+            .calculator-cta {
+                display: none;
+            }
+        }
+
+        /* High resolution screens */
+        @media (min-resolution: 2dppx) {
+            .calculator-container {
+                border-width: 0.5px;
+            }
+
+            .progress-bar {
+                height: 1px;
+            }
+        }
+
+
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .button,
+            .type-option,
+            .radio-option,
+            .progress-dot {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            input[type="checkbox"],
+            input[type="radio"] {
+                min-width: 20px;
+                min-height: 20px;
+            }
+        }
+
+        /* Very small devices */
+        @media (max-width: 320px) {
+            :root {
+                --fs-base: 0.875rem;
+                --fs-3xl: 1.5rem;
+                --fs-4xl: 2rem;
+            }
+
+            .calculator-header h1 {
+                word-break: break-word;
+                hyphens: auto;
+            }
+
+            .savings-amount {
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <!-- Header -->
+        <div class="calculator-header">
+            <h1>Réduisez votre facture d'eau grâce à la télérelève intelligente</h1>
+            <p>Willie automatise vos relevés de compteurs, détecte les fuites en temps réel et optimise votre consommation. Découvrez vos économies potentielles en moins de 2 minutes avec notre simulateur gratuit.</p>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 20%;"></div>
+        </div>
+
+        <!-- Type selector -->
+        <div class="calculator-type-selector" id="typeSelector">
+            <div class="type-option" data-type="simplified">
+                <h3><span class="icon">⚡</span> Calcul rapide</h3>
+                <p>Estimation globale en 2 minutes</p>
+                <small>Idéal pour une première approche</small>
+            </div>
+            <div class="type-option" data-type="detailed">
+                <h3><span class="icon">🎯</span> Calcul détaillé</h3>
+                <p>Résultats précis par site en 5 minutes</p>
+                <small>Pour une analyse approfondie</small>
+            </div>
+        </div>
+
+        <!-- Simplified form -->
+        <div class="calculator-form" id="simplifiedForm">
+            <div class="form-step active">
+                <h2>Informations générales</h2>
+                
+                <div class="form-group">
+                    <label for="nbSites">Nombre de sites</label>
+                    <input type="number" id="nbSites" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nbCompteurs">Nombre total de compteurs</label>
+                    <input type="number" id="nbCompteurs" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Consommation annuelle d'eau</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="consoGlobale" name="consoType" value="global" checked>
+                            <label for="consoGlobale">
+                                Consommation globale tous sites : 
+                                <input type="number" id="consoGlobaleValue" placeholder="m³/an" style="width: 150px; margin-left: 10px;">
+                            </label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="consoMoyenne" name="consoType" value="average">
+                            <label for="consoMoyenne">
+                                Consommation moyenne par site : 
+                                <input type="number" id="consoMoyenneValue" placeholder="m³/an" style="width: 150px; margin-left: 10px;">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button class="button secondary" onclick="resetCalculator()">Retour</button>
+                    <button class="button" onclick="calculateSimplified()">Calculer mes économies</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed form -->
+        <div class="calculator-form" id="detailedForm">
+            <div class="form-step active" id="step1">
+                <h2>Nombre de sites à analyser</h2>
+                
+                <div class="form-group">
+                    <label for="nbSitesDetailed">Combien de sites souhaitez-vous analyser ?</label>
+                    <input type="number" id="nbSitesDetailed" min="1" max="50" value="1" required>
+                </div>
+
+                <div class="form-navigation">
+                    <button class="button secondary" onclick="resetCalculator()">Retour</button>
+                    <button class="button" onclick="setupSites()">Suivant</button>
+                </div>
+            </div>
+
+            <div class="form-step" id="step2">
+                <h2>Site <span id="currentSiteNumber">1</span> sur <span id="totalSitesNumber">1</span></h2>
+                
+                <div class="site-form">
+                    <div class="form-group">
+                        <label for="siteName">Nom du site</label>
+                        <input type="text" id="siteName" placeholder="Ex: Siège social" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="siteAddress">
+                            Adresse du site
+                            <span class="tooltip">
+                                <span style="font-size: 0.8em; color: var(--accent);">ℹ</span>
+                                <span class="tooltiptext">L'adresse nous permet de déterminer précisément le coût de l'eau dans votre commune pour un calcul plus précis</span>
+                            </span>
+                        </label>
+                        <input type="text" id="siteAddress" placeholder="Commencez à taper l'adresse..." required autocomplete="street-address">
+                        <div class="address-suggestions" id="addressSuggestions"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteMeters">Nombre de compteurs d'eau</label>
+                        <input type="number" id="siteMeters" min="1" placeholder="Ex: 5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteConsumption">Consommation annuelle 2024 (m³)</label>
+                        <input type="number" id="siteConsumption" min="0" placeholder="Ex: 5000" required>
+                    </div>
+                </div>
+
+                <div class="site-navigation">
+                    <div class="site-progress">
+                        <div class="progress-dots">
+                            <!-- Dots will be generated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button class="button secondary" onclick="navigateSite('prev')">← Retour</button>
+                    <button class="button" id="nextSiteBtn" onclick="navigateSite('next')">Suivant →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading state -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Calcul de vos économies en cours...</p>
+        </div>
+
+        <!-- Results -->
+        <div class="calculator-results" id="results">
+            <div style="text-align: left; margin-bottom: var(--spacing-xl);">
+                <button class="button secondary" onclick="backToForm()">← Modifier mes données</button>
+            </div>
+            
+            <div class="main-savings">
+                <h2>💰 VOS ÉCONOMIES POTENTIELLES DÉTECTÉES</h2>
+                <div class="savings-amount">
+                    <span class="counter" id="totalSavings">0</span> €/an
+                </div>
+                <p>Économies annuelles estimées</p>
+                <div class="teaser-message">
+                    <p style="color: var(--accent); font-size: var(--fs-lg); margin-bottom: var(--spacing-lg);">
+                        🔒 Débloquez votre rapport complet pour découvrir :
+                    </p>
+                    <ul style="text-align: left; display: inline-block; color: var(--text-secondary);">
+                        <li>📊 Le détail précis de vos économies d'eau</li>
+                        <li>⏱️ Les heures de productivité gagnées</li>
+                        <li>📈 Votre projection sur 5 ans</li>
+                        <li>🛡️ Votre protection contre les amendes CSRD</li>
+                        <li>🌿 L'impact sur votre score ESG</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="additional-benefits">
+                <div class="benefit-card">
+                    <span class="icon">🛡️</span>
+                    <h4>Risques évités</h4>
+                    <p>Amendes CSRD/DPEF jusqu'à 3,75M€<br>✓ Reporting automatisé</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">🌿</span>
+                    <h4>Impact RSE</h4>
+                    <p>Score ESG amélioré<br>+15% notation extra-financière</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">🔧</span>
+                    <h4>Maintenance optimisée</h4>
+                    <p>-95% délai intervention fuites<br>Jusqu'à 120k€/fuite évitée</p>
+                </div>
+            </div>
+
+            <div class="calculator-cta">
+                <h3>🔓 Débloquez votre rapport détaillé personnalisé</h3>
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                    Recevez immédiatement votre analyse complète avec toutes vos économies détaillées
+                </p>
+                <form class="elegant-form" id="emailForm">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <input type="text" id="firstName" required>
+                            <label for="firstName">Prénom</label>
+                        </div>
+                        <div class="form-field">
+                            <input type="text" id="lastName" required>
+                            <label for="lastName">Nom</label>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input type="email" id="email" required>
+                        <label for="email">Email professionnel</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="tel" id="phone">
+                        <label for="phone">Téléphone (optionnel)</label>
+                    </div>
+                    
+                    <div class="consent-group">
+                        <input type="checkbox" id="consent" checked>
+                        <label for="consent">J'accepte de recevoir mon rapport personnalisé et d'être contacté par un expert Willie</label>
+                    </div>
+                    
+                    <button type="button" class="button submit-button" onclick="submitEmail()">
+                        Recevoir mon rapport détaillé →
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success message -->
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">✅</div>
+            <h2>Parfait !</h2>
+            <p>Votre rapport personnalisé a été envoyé à votre adresse email.</p>
+            <p>Un expert Willie va vous contacter dans les 24h pour discuter de vos besoins.</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const config = {
+            waterPricePerM3: 4.50,
+            reductionRate: 0.22,
+            timePerMeter: 0.25,
+            hourlyRate: 22,
+            inflationRate: 0.05
+        };
+
+        // State
+        let currentType = null;
+        let currentStep = 1;
+        let currentSiteIndex = 0;
+        let totalSites = 1;
+        let sitesData = [];
+        let results = {};
+        let formData = {}; // Store form data for navigation
+
+        // Address suggestions (simulated - replace with real API)
+        const addressSuggestions = [
+            "1 Rue de la Paix, 75002 Paris",
+            "10 Avenue des Champs-Élysées, 75008 Paris", 
+            "25 Boulevard Saint-Germain, 75005 Paris",
+            "15 Rue de Rivoli, 75001 Paris",
+            "50 Avenue Montaigne, 75008 Paris"
+        ];
+
+        // Save form data
+        function saveFormData() {
+            if (currentType === 'simplified') {
+                formData.simplified = {
+                    nbSites: document.getElementById('nbSites').value,
+                    nbCompteurs: document.getElementById('nbCompteurs').value,
+                    consoType: document.querySelector('input[name="consoType"]:checked')?.value,
+                    consoGlobaleValue: document.getElementById('consoGlobaleValue').value,
+                    consoMoyenneValue: document.getElementById('consoMoyenneValue').value
+                };
+            }
+        }
+
+        // Save current site data
+        function saveCurrentSiteData() {
+            const siteData = {
+                name: document.getElementById('siteName').value,
+                address: document.getElementById('siteAddress').value,
+                meters: document.getElementById('siteMeters').value,
+                consumption: document.getElementById('siteConsumption').value
+            };
+            
+            sitesData[currentSiteIndex] = siteData;
+        }
+
+        // Restore form data
+        function restoreFormData() {
+            if (currentType === 'simplified' && formData.simplified) {
+                const data = formData.simplified;
+                document.getElementById('nbSites').value = data.nbSites || 1;
+                document.getElementById('nbCompteurs').value = data.nbCompteurs || '';
+                if (data.consoType) {
+                    document.querySelector(`input[name="consoType"][value="${data.consoType}"]`).checked = true;
+                    document.getElementById('consoGlobaleValue').disabled = data.consoType !== 'global';
+                    document.getElementById('consoMoyenneValue').disabled = data.consoType !== 'average';
+                }
+                document.getElementById('consoGlobaleValue').value = data.consoGlobaleValue || '';
+                document.getElementById('consoMoyenneValue').value = data.consoMoyenneValue || '';
+            }
+        }
+
+        // GTM tracking
+        function trackEvent(eventName, parameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, parameters);
+            }
+            console.log('Track event:', eventName, parameters);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Type selector events
+            document.querySelectorAll('.type-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    selectCalculatorType(this.dataset.type);
+                });
+            });
+
+            // Radio button events
+            document.querySelectorAll('input[name="consoType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.getElementById('consoGlobaleValue').disabled = this.value !== 'global';
+                    document.getElementById('consoMoyenneValue').disabled = this.value !== 'average';
+                });
+            });
+
+            // Initial state
+            document.getElementById('consoMoyenneValue').disabled = true;
+
+            // Address autocomplete
+            const addressInput = document.getElementById('siteAddress');
+            if (addressInput) {
+                addressInput.addEventListener('input', handleAddressInput);
+                addressInput.addEventListener('blur', () => {
+                    setTimeout(() => {
+                        document.getElementById('addressSuggestions').classList.remove('active');
+                    }, 200);
+                });
+            }
+
+            // Handle touch events for better mobile experience
+            if ('ontouchstart' in window) {
+                document.querySelectorAll('.button, .type-option, .radio-option').forEach(el => {
+                    el.addEventListener('touchstart', function() {
+                        this.style.opacity = '0.8';
+                    });
+                    el.addEventListener('touchend', function() {
+                        this.style.opacity = '1';
+                    });
+                });
+            }
+        });
+
+        // Handle address input
+        function handleAddressInput(e) {
+            const value = e.target.value;
+            const suggestionsDiv = document.getElementById('addressSuggestions');
+            
+            if (value.length > 2) {
+                // Filter suggestions (in real app, this would be an API call)
+                const filtered = addressSuggestions.filter(addr => 
+                    addr.toLowerCase().includes(value.toLowerCase())
+                );
+                
+                if (filtered.length > 0) {
+                    suggestionsDiv.innerHTML = filtered.map(addr => 
+                        `<div class="address-suggestion" onclick="selectAddress('${addr}')">${addr}</div>`
+                    ).join('');
+                    suggestionsDiv.classList.add('active');
+                } else {
+                    suggestionsDiv.classList.remove('active');
+                }
+            } else {
+                suggestionsDiv.classList.remove('active');
+            }
+        }
+
+        // Select address
+        function selectAddress(address) {
+            document.getElementById('siteAddress').value = address;
+            document.getElementById('addressSuggestions').classList.remove('active');
+        }
+
+        // Calculator type selection
+        function selectCalculatorType(type) {
+            currentType = type;
+            
+            // Track selection
+            trackEvent('calculator_type_selected', {
+                'calculator_type': type
+            });
+
+            // Update UI
+            document.querySelectorAll('.type-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-type="${type}"]`).classList.add('selected');
+
+            // Hide type selector
+            document.getElementById('typeSelector').style.display = 'none';
+
+            // Show appropriate form
+            if (type === 'simplified') {
+                document.getElementById('simplifiedForm').classList.add('active');
+                setTimeout(restoreFormData, 100); // Restore saved data
+            } else {
+                document.getElementById('detailedForm').classList.add('active');
+            }
+
+            // Update progress
+            updateProgress(40);
+        }
+
+        // Back to form from results
+        function backToForm() {
+            document.getElementById('results').classList.remove('active');
+            
+            if (currentType === 'simplified') {
+                document.getElementById('simplifiedForm').classList.add('active');
+                restoreFormData();
+            } else {
+                document.getElementById('detailedForm').classList.add('active');
+                showStep('step2');
+            }
+            
+            updateProgress(70);
+        }
+
+        // Progress bar
+        function updateProgress(percentage) {
+            document.querySelector('.progress-fill').style.width = percentage + '%';
+        }
+
+        // Reset calculator
+        function resetCalculator() {
+            // Reset state
+            currentType = null;
+            currentSiteIndex = 0;
+            sitesData = [];
+            
+            // Hide all forms
+            document.querySelectorAll('.calculator-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            // Hide results and loading
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('loading').classList.remove('active');
+            
+            // Show type selector
+            document.getElementById('typeSelector').style.display = 'grid';
+            
+            // Reset progress
+            updateProgress(20);
+        }
+
+        // Simplified calculation
+        function calculateSimplified() {
+            const nbSites = parseInt(document.getElementById('nbSites').value);
+            const nbCompteurs = parseInt(document.getElementById('nbCompteurs').value);
+            const consoType = document.querySelector('input[name="consoType"]:checked').value;
+            
+            let totalConsumption;
+            if (consoType === 'global') {
+                totalConsumption = parseFloat(document.getElementById('consoGlobaleValue').value);
+            } else {
+                const avgConsumption = parseFloat(document.getElementById('consoMoyenneValue').value);
+                totalConsumption = avgConsumption * nbSites;
+            }
+
+            if (!nbSites || !nbCompteurs || !totalConsumption) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+
+            // Save form data before calculating
+            saveFormData();
+
+            // Track values
+            trackEvent('calculator_values_entered', {
+                'sites_count': nbSites <= 5 ? 'low' : nbSites <= 20 ? 'medium' : 'high',
+                'meters_count': nbCompteurs <= 50 ? 'low' : nbCompteurs <= 200 ? 'medium' : 'high',
+                'consumption_range': totalConsumption <= 10000 ? 'low' : totalConsumption <= 50000 ? 'medium' : 'high'
+            });
+
+            // Show loading
+            document.getElementById('simplifiedForm').classList.remove('active');
+            document.getElementById('loading').classList.add('active');
+            updateProgress(70);
+
+            // Calculate results
+            setTimeout(() => {
+                calculateResults({
+                    sites: nbSites,
+                    meters: nbCompteurs,
+                    consumption: totalConsumption
+                });
+            }, 1500);
+        }
+
+        // Setup sites for detailed form
+        function setupSites() {
+            const nbSites = parseInt(document.getElementById('nbSitesDetailed').value);
+            
+            if (!nbSites || nbSites < 1) {
+                alert('Veuillez entrer un nombre de sites valide');
+                return;
+            }
+
+            // Initialize sites data array
+            totalSites = nbSites;
+            sitesData = new Array(nbSites).fill(null).map(() => ({}));
+            currentSiteIndex = 0;
+
+            // Update UI
+            updateSiteUI();
+            
+            // Show step 2
+            showStep('step2');
+            updateProgress(60);
+        }
+
+        // Update site UI
+        function updateSiteUI() {
+            // Update site counter
+            document.getElementById('currentSiteNumber').textContent = currentSiteIndex + 1;
+            document.getElementById('totalSitesNumber').textContent = totalSites;
+
+            // Update progress dots
+            const dotsContainer = document.querySelector('.progress-dots');
+            dotsContainer.innerHTML = '';
+            
+            for (let i = 0; i < totalSites; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot';
+                if (i === currentSiteIndex) {
+                    dot.classList.add('active');
+                } else if (sitesData[i] && sitesData[i].name) {
+                    dot.classList.add('completed');
+                }
+                dot.onclick = () => goToSite(i);
+                dotsContainer.appendChild(dot);
+            }
+
+            // Load site data if exists
+            if (sitesData[currentSiteIndex]) {
+                const data = sitesData[currentSiteIndex];
+                document.getElementById('siteName').value = data.name || '';
+                document.getElementById('siteAddress').value = data.address || '';
+                document.getElementById('siteMeters').value = data.meters || '';
+                document.getElementById('siteConsumption').value = data.consumption || '';
+            } else {
+                // Clear form
+                document.getElementById('siteName').value = '';
+                document.getElementById('siteAddress').value = '';
+                document.getElementById('siteMeters').value = '';
+                document.getElementById('siteConsumption').value = '';
+            }
+
+            // Update navigation buttons
+            const nextBtn = document.getElementById('nextSiteBtn');
+            if (currentSiteIndex === totalSites - 1) {
+                nextBtn.textContent = 'Calculer mes économies →';
+                nextBtn.onclick = () => calculateDetailed();
+            } else {
+                nextBtn.textContent = 'Suivant →';
+                nextBtn.onclick = () => navigateSite('next');
+            }
+        }
+
+        // Navigate between sites
+        function navigateSite(direction) {
+            // Save current site data
+            saveCurrentSiteData();
+
+            if (direction === 'next') {
+                if (validateCurrentSite()) {
+                    if (currentSiteIndex < totalSites - 1) {
+                        currentSiteIndex++;
+                        updateSiteUI();
+                    }
+                }
+            } else if (direction === 'prev') {
+                if (currentSiteIndex > 0) {
+                    currentSiteIndex--;
+                    updateSiteUI();
+                } else {
+                    showStep('step1');
+                }
+            }
+        }
+
+        // Go to specific site
+        function goToSite(index) {
+            saveCurrentSiteData();
+            currentSiteIndex = index;
+            updateSiteUI();
+        }
+
+        // Validate current site
+        function validateCurrentSite() {
+            const name = document.getElementById('siteName').value;
+            const address = document.getElementById('siteAddress').value;
+            const meters = document.getElementById('siteMeters').value;
+            const consumption = document.getElementById('siteConsumption').value;
+
+            if (!name || !address || !meters || !consumption) {
+                alert('Veuillez remplir tous les champs pour ce site');
+                return false;
+            }
+            return true;
+        }
+
+        // Show step
+        function showStep(stepId) {
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById(stepId).classList.add('active');
+        }
+
+        // Detailed calculation
+        function calculateDetailed() {
+            // Save current site data
+            saveCurrentSiteData();
+
+            // Validate all sites
+            let allValid = true;
+            let totalMeters = 0;
+            let totalConsumption = 0;
+
+            for (let i = 0; i < totalSites; i++) {
+                if (!sitesData[i] || !sitesData[i].name || !sitesData[i].meters || !sitesData[i].consumption) {
+                    allValid = false;
+                    alert(`Veuillez compléter les informations du site ${i + 1}`);
+                    currentSiteIndex = i;
+                    updateSiteUI();
+                    return;
+                }
+                totalMeters += parseInt(sitesData[i].meters);
+                totalConsumption += parseFloat(sitesData[i].consumption);
+            }
+
+            // Track values
+            trackEvent('calculator_values_entered', {
+                'sites_count': totalSites <= 5 ? 'low' : totalSites <= 20 ? 'medium' : 'high',
+                'meters_count': totalMeters <= 50 ? 'low' : totalMeters <= 200 ? 'medium' : 'high',
+                'consumption_range': totalConsumption <= 10000 ? 'low' : totalConsumption <= 50000 ? 'medium' : 'high'
+            });
+
+            // Show loading
+            document.getElementById('detailedForm').classList.remove('active');
+            document.getElementById('loading').classList.add('active');
+            updateProgress(70);
+
+            // Calculate results
+            setTimeout(() => {
+                calculateResults({
+                    sites: totalSites,
+                    meters: totalMeters,
+                    consumption: totalConsumption,
+                    detailed: sitesData
+                });
+            }, 1500);
+        }
+
+        // Calculate results
+        function calculateResults(data) {
+            // Water savings
+            const waterSaved = data.consumption * config.reductionRate;
+            const waterSavingsEuros = waterSaved * config.waterPricePerM3;
+
+            // Time savings
+            const timeSaved = data.meters * config.timePerMeter * 12; // Monthly reading
+            const timeSavingsEuros = timeSaved * config.hourlyRate;
+
+            // Total annual savings
+            const totalAnnualSavings = waterSavingsEuros + timeSavingsEuros;
+
+            // 5-year projection with inflation
+            let fiveYearSavings = 0;
+            for (let i = 0; i < 5; i++) {
+                fiveYearSavings += totalAnnualSavings * Math.pow(1 + config.inflationRate, i);
+            }
+
+            // Store results
+            results = {
+                waterSaved: Math.round(waterSaved),
+                waterSavingsEuros: Math.round(waterSavingsEuros),
+                timeSaved: Math.round(timeSaved),
+                timeSavingsEuros: Math.round(timeSavingsEuros),
+                totalAnnualSavings: Math.round(totalAnnualSavings),
+                fiveYearSavings: Math.round(fiveYearSavings)
+            };
+
+            // Track results
+            trackEvent('calculator_results_viewed', {
+                'annual_savings': totalAnnualSavings <= 10000 ? 'low' : totalAnnualSavings <= 50000 ? 'medium' : 'high',
+                'roi_years': 5
+            });
+
+            // Show results
+            showResults();
+        }
+
+        // Show results
+        function showResults() {
+            document.getElementById('loading').classList.remove('active');
+            document.getElementById('results').classList.add('active');
+            updateProgress(100);
+
+            // Animate counter for main savings only
+            animateCounter('totalSavings', results.totalAnnualSavings);
+            
+            // Store detailed results for the email report
+            // These will be sent to backend when email is submitted
+            console.log('Full results stored for report:', results);
+        }
+
+        // Animate counter
+        function animateCounter(elementId, target) {
+            const element = document.getElementById(elementId);
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current).toLocaleString();
+            }, 16);
+        }
+
+        // Submit email
+        function submitEmail() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const consent = document.getElementById('consent').checked;
+
+            // Validate required fields
+            if (!firstName || !lastName || !email) {
+                alert('Veuillez remplir tous les champs obligatoires');
+                return;
+            }
+
+            if (!consent) {
+                alert('Veuillez accepter de recevoir votre rapport personnalisé');
+                return;
+            }
+
+            // Collect form data
+            const emailData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: phone,
+                consent: true,
+                calculationType: currentType,
+                results: results,
+                formData: currentType === 'simplified' ? formData : { sites: sitesData }
+            };
+
+            // Track submission
+            const leadScore = results.totalAnnualSavings > 50000 ? 'high' : 
+                           results.totalAnnualSavings > 20000 ? 'medium' : 'low';
+            
+            trackEvent('calculator_email_submitted', {
+                'lead_score': leadScore
+            });
+
+            // Show success
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('successMessage').classList.add('active');
+
+            // Here you would normally send the data to your backend
+            console.log('Form submitted with complete data:', emailData);
+            
+            // Example API call (uncomment and adapt for your backend):
+            /*
+            fetch('https://your-api-endpoint.com/calculator-lead', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(emailData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            */
+        }
+
+        // Viewport height fix for mobile browsers
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        // Set viewport height on load and resize
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
+        window.addEventListener('orientationchange', setViewportHeight);
+    </script>
+</body>
+</html>
