@@ -1453,6 +1453,33 @@
     </div>
 
     <script>
+        // AUTO-HEIGHT POUR IFRAME
+        // Cette fonction envoie la hauteur du contenu au parent pour adapter l'iframe
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            if (window.parent !== window) {
+                window.parent.postMessage({ type: 'resize-iframe', height: height }, '*');
+            }
+        }
+
+        // Observer pour détecter les changements de contenu
+        const resizeObserver = new ResizeObserver(() => {
+            sendHeight();
+        });
+
+        // Observer le body pour détecter les changements
+        document.addEventListener('DOMContentLoaded', function() {
+            resizeObserver.observe(document.body);
+            sendHeight();
+        });
+
+        // Envoyer la hauteur après chaque changement de section
+        const originalShowFunction = window.showResults || (() => {});
+        window.showResults = function() {
+            originalShowFunction.apply(this, arguments);
+            setTimeout(sendHeight, 100);
+        };
+
         // Configuration
         const config = {
             waterPricePerM3: 4.50,
@@ -1631,6 +1658,7 @@
 
             // Update progress
             updateProgress(40);
+            setTimeout(sendHeight, 100);
         }
 
         // Back to form from results
@@ -1646,6 +1674,7 @@
             }
             
             updateProgress(70);
+            setTimeout(sendHeight, 100);
         }
 
         // Progress bar
@@ -1674,6 +1703,7 @@
             
             // Reset progress
             updateProgress(20);
+            setTimeout(sendHeight, 100);
         }
 
         // Simplified calculation
@@ -1709,6 +1739,7 @@
             document.getElementById('simplifiedForm').classList.remove('active');
             document.getElementById('loading').classList.add('active');
             updateProgress(70);
+            setTimeout(sendHeight, 100);
 
             // Calculate results
             setTimeout(() => {
@@ -1740,6 +1771,7 @@
             // Show step 2
             showStep('step2');
             updateProgress(60);
+            setTimeout(sendHeight, 100);
         }
 
         // Update site UI
@@ -1810,6 +1842,7 @@
                     showStep('step1');
                 }
             }
+            setTimeout(sendHeight, 100);
         }
 
         // Go to specific site
@@ -1817,6 +1850,7 @@
             saveCurrentSiteData();
             currentSiteIndex = index;
             updateSiteUI();
+            setTimeout(sendHeight, 100);
         }
 
         // Validate current site
@@ -1839,6 +1873,7 @@
                 step.classList.remove('active');
             });
             document.getElementById(stepId).classList.add('active');
+            setTimeout(sendHeight, 100);
         }
 
         // Detailed calculation
@@ -1874,6 +1909,7 @@
             document.getElementById('detailedForm').classList.remove('active');
             document.getElementById('loading').classList.add('active');
             updateProgress(70);
+            setTimeout(sendHeight, 100);
 
             // Calculate results
             setTimeout(() => {
@@ -1937,6 +1973,8 @@
             // Store detailed results for the email report
             // These will be sent to backend when email is submitted
             console.log('Full results stored for report:', results);
+            
+            setTimeout(sendHeight, 100);
         }
 
         // Animate counter
@@ -1999,6 +2037,7 @@
             // Show success
             document.getElementById('results').style.display = 'none';
             document.getElementById('successMessage').classList.add('active');
+            setTimeout(sendHeight, 100);
 
             // Here you would normally send the data to your backend
             console.log('Form submitted with complete data:', emailData);
