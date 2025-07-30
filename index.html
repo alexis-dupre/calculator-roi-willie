@@ -132,6 +132,30 @@
             opacity: 0.1;
         }
 
+        /* Intégration transparente dans iframe */
+        .in-iframe .calculator-container {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            backdrop-filter: none;
+            max-width: 100%;
+        }
+
+        .in-iframe .calculator-container::before {
+            display: none;
+        }
+
+        .in-iframe body {
+            background: transparent;
+            padding: 0;
+            min-height: auto;
+        }
+
+        .in-iframe body::before {
+            display: none;
+        }
+
         /* Header */
         .calculator-header {
             text-align: center;
@@ -1453,12 +1477,27 @@
     </div>
 
     <script>
-        // AUTO-HEIGHT POUR IFRAME
-        // Cette fonction envoie la hauteur du contenu au parent pour adapter l'iframe
+        // Détecter si on est dans un iframe dès le début
+        if (window.parent !== window) {
+            document.body.classList.add('in-iframe');
+        }
+
+        // AUTO-HEIGHT POUR IFRAME - Version améliorée
         function sendHeight() {
-            const height = document.body.scrollHeight;
+            // Forcer un recalcul du layout
+            document.body.offsetHeight;
+            
+            // Obtenir la hauteur réelle incluant les marges
+            const height = Math.max(
+                document.body.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.clientHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight
+            );
+            
             if (window.parent !== window) {
-                window.parent.postMessage({ type: 'resize-iframe', height: height }, '*');
+                window.parent.postMessage({ type: 'resize-iframe', height: height + 10 }, '*');
             }
         }
 
@@ -1472,13 +1511,6 @@
             resizeObserver.observe(document.body);
             sendHeight();
         });
-
-        // Envoyer la hauteur après chaque changement de section
-        const originalShowFunction = window.showResults || (() => {});
-        window.showResults = function() {
-            originalShowFunction.apply(this, arguments);
-            setTimeout(sendHeight, 100);
-        };
 
         // Configuration
         const config = {
@@ -1658,7 +1690,7 @@
 
             // Update progress
             updateProgress(40);
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Back to form from results
@@ -1674,7 +1706,7 @@
             }
             
             updateProgress(70);
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Progress bar
@@ -1703,7 +1735,7 @@
             
             // Reset progress
             updateProgress(20);
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Simplified calculation
@@ -1739,7 +1771,7 @@
             document.getElementById('simplifiedForm').classList.remove('active');
             document.getElementById('loading').classList.add('active');
             updateProgress(70);
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
 
             // Calculate results
             setTimeout(() => {
@@ -1771,7 +1803,7 @@
             // Show step 2
             showStep('step2');
             updateProgress(60);
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Update site UI
@@ -1842,7 +1874,7 @@
                     showStep('step1');
                 }
             }
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Go to specific site
@@ -1850,7 +1882,7 @@
             saveCurrentSiteData();
             currentSiteIndex = index;
             updateSiteUI();
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Validate current site
@@ -1873,7 +1905,7 @@
                 step.classList.remove('active');
             });
             document.getElementById(stepId).classList.add('active');
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Detailed calculation
@@ -1909,7 +1941,7 @@
             document.getElementById('detailedForm').classList.remove('active');
             document.getElementById('loading').classList.add('active');
             updateProgress(70);
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
 
             // Calculate results
             setTimeout(() => {
@@ -1974,7 +2006,7 @@
             // These will be sent to backend when email is submitted
             console.log('Full results stored for report:', results);
             
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
         }
 
         // Animate counter
@@ -2037,7 +2069,7 @@
             // Show success
             document.getElementById('results').style.display = 'none';
             document.getElementById('successMessage').classList.add('active');
-            setTimeout(sendHeight, 100);
+            setTimeout(sendHeight, 300);
 
             // Here you would normally send the data to your backend
             console.log('Form submitted with complete data:', emailData);
