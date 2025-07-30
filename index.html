@@ -1483,33 +1483,54 @@
         }
 
         // AUTO-HEIGHT POUR IFRAME - Version améliorée
+        let lastHeight = 0;
+        let heightTimeout = null;
+        
         function sendHeight() {
-            // Forcer un recalcul du layout
-            document.body.offsetHeight;
-            
-            // Obtenir la hauteur réelle incluant les marges
-            const height = Math.max(
-                document.body.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.clientHeight,
-                document.documentElement.scrollHeight,
-                document.documentElement.offsetHeight
-            );
-            
-            if (window.parent !== window) {
-                window.parent.postMessage({ type: 'resize-iframe', height: height + 10 }, '*');
+            // Éviter les appels trop fréquents
+            if (heightTimeout) {
+                clearTimeout(heightTimeout);
             }
+            
+            heightTimeout = setTimeout(() => {
+                // Forcer un recalcul du layout
+                document.body.offsetHeight;
+                
+                // Obtenir la hauteur réelle incluant les marges
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                // Envoyer seulement si la hauteur a changé
+                if (Math.abs(height - lastHeight) > 5 && window.parent !== window) {
+                    lastHeight = height;
+                    window.parent.postMessage({ type: 'resize-iframe', height: height + 20 }, '*');
+                }
+            }, 100);
         }
 
-        // Observer pour détecter les changements de contenu
+        // Observer pour détecter les changements de contenu - avec debounce
+        let resizeTimeout = null;
         const resizeObserver = new ResizeObserver(() => {
-            sendHeight();
+            if (resizeTimeout) {
+                clearTimeout(resizeTimeout);
+            }
+            resizeTimeout = setTimeout(() => {
+                sendHeight();
+            }, 150);
         });
 
         // Observer le body pour détecter les changements
         document.addEventListener('DOMContentLoaded', function() {
-            resizeObserver.observe(document.body);
-            sendHeight();
+            // Attendre que tout soit chargé avant d'observer
+            setTimeout(() => {
+                resizeObserver.observe(document.body);
+                sendHeight();
+            }, 500);
         });
 
         // Configuration
